@@ -68,4 +68,11 @@ function getWeather(obj) {
 
 function displayWeather(weather) {
 	console.log(weather);
+	let mapDiv = document.getElementById('map-container');
+	let weatherDiv = document.createElement('div');
+	let summary = document.createElement('h3');
+	summary.textContent = weather.summary;
+
+	weatherDiv.appendChild(summary);
+	// mapDiv.appendChild(weatherDiv);
 }
