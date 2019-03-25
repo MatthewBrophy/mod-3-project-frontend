@@ -1,15 +1,3 @@
-// document.addEventListener('DOMContentLoaded', function() {});
-
-// function fetchWeather() {
-// 	fetch('https://api.darksky.net/forecast/4e39d108b8018f13ec1aa2d8be2e4830/37.8267,-122.4233', {
-// 		method: 'GET',
-// 		mode: 'no-cors',
-// 		headers: { 'Content-Type': 'application/json' }
-// 	})
-// 		.then((res) => res.json())
-// 		.then((results) => console.log(results));
-// }
-
 // //snow
 // // 1. Define a color for the snow
 // snowStorm.snowColor = '#fff';
@@ -23,15 +11,33 @@
 
 //mapping
 
-let flatiron = [ -98.5795, 39.8282 ];
+let center = [ -98.5795, 39.8282 ];
 mapboxgl.accessToken =
 	'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
 
 var map = new mapboxgl.Map({
 	container: 'main-map',
-	center: [ -98.5795, 39.8282 ],
+	center: center,
 	zoom: 3,
-	style: 'mapbox://styles/mapbox/dark-v10'
+	style: 'mapbox://styles/mapbox/outdoors-v9'
 });
 
-fetchWeather();
+let resorts = 'http://localhost:3000/api/v1/resorts';
+fetch(resorts)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(resorts) {
+		for (var i = 0; i < resorts.length; i++) {
+			var obj = resorts[i];
+			let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
+			var marker = document.createElement('div');
+			marker.id = 'marker';
+			new mapboxgl.Marker(marker)
+				.setLngLat(myLatlng)
+				.setPopup(
+					new mapboxgl.Popup({ offset: 25 }).setHTML('<h3>' + obj.name + '</h3><p>' + obj.address1 + '</p>')
+				)
+				.addTo(map);
+		}
+	});

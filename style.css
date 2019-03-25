@@ -1,8 +1,3 @@
-* {
-	color: white;
-	background-color: black;
-}
-
 #header {
 	text-align: center;
 }
@@ -15,7 +10,7 @@
 
 /* Add a black background color to the top navigation */
 .topnav {
-	background-color: black;
+	background-color: white;
 	overflow: hidden;
 }
 
@@ -45,4 +40,14 @@
 /* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
 	display: none;
+}
+
+#marker {
+	background-image: url('https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-2/60/011_053_athlete_sportsman_skier_olympian_human_avatar-512.png');
+	background-color: none;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
