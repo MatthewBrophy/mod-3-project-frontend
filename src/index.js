@@ -44,9 +44,15 @@ function buildPopUp(resorts) {
 		weatherButton.addEventListener('click', function() {
 			getWeather(obj);
 		});
+		let websiteButton = document.createElement('button');
+		websiteButton.textContent = 'Resort Website';
+		websiteButton.addEventListener('click', function() {
+			window.location = obj.official_website;
+		});
 		title.textContent = obj.name;
 		div.appendChild(title);
 		div.appendChild(weatherButton);
+		div.appendChild(websiteButton);
 		var popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
 		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
 	}
