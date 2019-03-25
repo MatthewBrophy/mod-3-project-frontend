@@ -10,6 +10,7 @@
 // snowStorm.start();
 
 //mapping
+const RESORTS = 'http://localhost:3000/api/v1/resorts';
 
 let center = [ -98.5795, 39.8282 ];
 mapboxgl.accessToken =
@@ -22,22 +23,49 @@ var map = new mapboxgl.Map({
 	style: 'mapbox://styles/mapbox/outdoors-v9'
 });
 
-let resorts = 'http://localhost:3000/api/v1/resorts';
-fetch(resorts)
+fetch(RESORTS)
 	.then(function(response) {
 		return response.json();
 	})
 	.then(function(resorts) {
-		for (var i = 0; i < resorts.length; i++) {
-			var obj = resorts[i];
-			let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
-			var marker = document.createElement('div');
-			marker.id = 'marker';
-			new mapboxgl.Marker(marker)
-				.setLngLat(myLatlng)
-				.setPopup(
-					new mapboxgl.Popup({ offset: 25 }).setHTML('<h3>' + obj.name + '</h3><p>' + obj.address1 + '</p>')
-				)
-				.addTo(map);
-		}
+		buildPopUp(resorts);
 	});
+
+function buildPopUp(resorts) {
+	for (let i = 0; i < resorts.length; i++) {
+		let obj = resorts[i];
+		let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
+		let marker = document.createElement('div');
+		marker.id = 'marker';
+		var div = window.document.createElement('div');
+		var title = document.createElement('h3');
+		let weatherButton = document.createElement('button');
+		weatherButton.textContent = 'Weather Report';
+		weatherButton.addEventListener('click', function() {
+			getWeather(obj);
+		});
+		title.textContent = obj.name;
+		div.appendChild(title);
+		div.appendChild(weatherButton);
+		var popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
+		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
+	}
+}
+
+//connect to dark sky api
+function getWeather(obj) {
+	console.log('reached weather function');
+	console.log(obj);
+	let WEATHER_API = `https://weather-app-rails.herokuapp.com/weather?loc=${obj.latitude}_${obj.longitude}`;
+	fetch(WEATHER_API)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(weather) {
+			displayWeather(weather);
+		});
+}
+
+function displayWeather(weather) {
+	console.log(weather);
+}
