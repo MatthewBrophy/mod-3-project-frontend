@@ -1,19 +1,10 @@
-//snow
-// 1. Define a color for the snow
-snowStorm.snowColor = '#fff';
-// 2. To optimize, define the max number of flakes that can
-// be shown on screen at once
-snowStorm.flakesMaxActive = 200;
-// 3. Allow the snow to flicker in and out of the view
-snowStorm.useTwinkleEffect = true;
-// 4. Start the snowstorm!
-snowStorm.start();
-
 //mapping
 document.body.style.backgroundColor = 'black';
 let welcomeDiv = document.getElementById('main-button');
 let startButton = document.getElementById('main-button');
+let snowFlake = document.getElementById('snowflake');
 startButton.addEventListener('click', function() {
+	snowFlake.innerHTML = '';
 	welcomeDiv.remove();
 	showMap();
 });
@@ -179,7 +170,7 @@ function showMap() {
 		titleRow.id = 'center-text';
 		titleRow.classList.add('row');
 		let titleDiv = document.createElement('div');
-		let title = document.createElement('h4');
+		let title = document.createElement('h2');
 		title.textContent = resort.name;
 
 		let iconRow = document.createElement('div');
@@ -191,20 +182,27 @@ function showMap() {
 		icon.id = 'lg-weather';
 
 		let weatherBlurb = document.createElement('span');
+		weatherBlurb.id = 'weatherBlurb';
 		weatherBlurb.textContent = `    ${weather.currently.summary}`;
 
 		let dualPane = document.createElement('div');
 		dualPane.classList.add('row');
 		let leftPane = document.createElement('div');
-		leftPane.classList.add('col-md-6');
+		leftPane.classList.add('col-md-6', 'left-pane-border');
 		let rightPane = document.createElement('div');
-		rightPane.classList.add('col-md-6');
+		rightPane.classList.add('col-md-6', 'right-pane-border');
 		let leftPaneContent = document.createElement('div');
 		let leftPaneTitle = document.createElement('p');
+		leftPaneTitle.id = 'pane-title';
 		leftPaneTitle.innerText = 'Current Conditions';
 		let rightPaneContent = document.createElement('div');
 		let rightPaneTitle = document.createElement('p');
-		rightPaneTitle.innerText = weather.daily.summary;
+		rightPaneTitle.id = 'pane-title';
+		rightPaneTitle.innerText = 'Weekly Summary';
+
+		let currentWeatherStats = document.createElement('ul');
+		let currentTemp = document.createElement('li');
+		currentTemp.textContent = `Current Temp: ${weather.currently.temperature} °F`;
 
 		weatherPopup.appendChild(mainDisplayPane);
 		mainDisplayPane.appendChild(titleRow);
@@ -223,6 +221,9 @@ function showMap() {
 		rightPane.appendChild(rightPaneContent);
 		leftPaneContent.appendChild(leftPaneTitle);
 		rightPaneContent.appendChild(rightPaneTitle);
+
+		leftPaneContent.appendChild(currentWeatherStats);
+		currentWeatherStats.appendChild(currentTemp);
 
 		console.log(weather);
 	}

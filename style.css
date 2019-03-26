@@ -122,7 +122,8 @@
 }
 
 #lg-weather {
-	font-size: 48px;
+	font-size: 56px;
+	padding-bottom: 5px;
 }
 
 #button-wrapper {
@@ -199,4 +200,25 @@ body {
 .svg-wrapper:hover .shape {
 	-webkit-animation: 0.5s draw linear forwards;
 	animation: 0.5s draw linear forwards;
+}
+#weatherBlurb {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+#pane-title {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.left-pane-border {
+	border-right: 2px solid black;
+}
+
+.right-pane-border {
+	border-left: 2px solid black;
+}
+
+li {
+	list-style-type: none;
 }
