@@ -107,16 +107,15 @@ function showMap() {
 			getWeather(resort);
 		});
 
-		let websiteButton = document.createElement('button');
-		websiteButton.classList = 'popup-button';
-		websiteButton.textContent = 'Resort Website';
-		websiteButton.addEventListener('click', function() {
-			mainDisplay.innerHTML = '';
-			window.location = resort.official_website;
+		let resortButton = document.createElement('button');
+		resortButton.classList = 'popup-button';
+		resortButton.textContent = 'Resort Reviews';
+		resortButton.addEventListener('click', function() {
+			getReviews(resort);
 		});
 
 		div.appendChild(weatherButton);
-		div.appendChild(websiteButton);
+		div.appendChild(resortButton);
 		div.appendChild(zoomOutButton);
 	}
 
@@ -177,6 +176,29 @@ function showMap() {
 		weatherPopup.appendChild(weatherSummary);
 		weatherPopup.appendChild(buttonWrapper);
 		console.log(weather);
+	}
+
+	function getReviews(resort) {
+		let reviewPopup = document.getElementById('review-light');
+		reviewPopup.style.display = 'block';
+		let fade = document.getElementById('review-fade');
+		fade.style.display = 'block';
+
+		let buttonWrapper = document.createElement('div');
+		buttonWrapper.id = 'button-wrapper';
+		let closeButton = document.createElement('button');
+		closeButton.classList = 'close-button';
+		closeButton.textContent = 'Close';
+		closeButton.addEventListener('click', function() {
+			reviewPopup.innerHTML = '';
+			closeButton.remove();
+			reviewPopup.style.display = 'none';
+			fade.style.display = 'none';
+		});
+
+		buttonWrapper.appendChild(closeButton);
+		reviewPopup.appendChild(buttonWrapper);
+		console.log('reached review function');
 	}
 
 	function weatherIconFunction(weather) {
