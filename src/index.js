@@ -54,13 +54,19 @@ function showMap() {
 			let title = document.createElement('h3');
 			title.textContent = obj.name;
 			let baseElevation = document.createElement('p');
-			baseElevation.textContent = `Base Elevation: ${obj.bottom_elevation} ft`;
+			if (obj.bottom_elevation) {
+				baseElevation.textContent = `Base Elevation: ${obj.bottom_elevation} ft`;
+			}
 			let topElevation = document.createElement('p');
-			topElevation.textContent = `Top Elevation: ${obj.top_elevation} ft`;
+			if (obj.top_elevation) {
+				topElevation.textContent = `Top Elevation: ${obj.top_elevation} ft`;
+			}
 			let snowfall = document.createElement('p');
 			snowfall.textContent = `Average Snowfall: ${Math.floor(obj.annual_snowfall / 2.54)} inches`;
 			let liftCapacity = document.createElement('p');
-			liftCapacity.textContent = `Lift Capacity: ${obj.hourly_lift_capacity} skiers/hr`;
+			if (obj.hourly_lift_capacity) {
+				liftCapacity.textContent = `Lift Capacity: ${obj.hourly_lift_capacity} skiers/hr`;
+			}
 
 			let weatherButton = document.createElement('button');
 			weatherButton.classList = 'popup-button';
