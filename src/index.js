@@ -11,6 +11,16 @@ snowStorm.start();
 
 //mapping
 document.body.style.backgroundColor = 'black';
+let welcomeDiv = document.getElementById('main-button');
+let startButton = document.createElement('button');
+startButton.textContent = 'Enter the Gnar';
+startButton.classList = 'main-button';
+welcomeDiv.appendChild(startButton);
+startButton.addEventListener('click', function() {
+	welcomeDiv.remove();
+	showMap();
+});
+
 function showMap() {
 	const RESORTS = 'http://localhost:3000/api/v1/resorts';
 
@@ -34,7 +44,6 @@ function showMap() {
 		});
 
 	function buildPopUp(resorts) {
-		let mainDisplay = document.getElementById('main');
 		for (let i = 0; i < resorts.length; i++) {
 			let obj = resorts[i];
 			let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
@@ -121,5 +130,3 @@ function showMap() {
 		weatherDiv.appendChild(summary);
 	}
 }
-
-showMap();

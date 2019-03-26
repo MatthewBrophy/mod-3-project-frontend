@@ -39,3 +39,40 @@
 .popup-button:hover {
 	background-color: rgb(57, 69, 235);
 }
+
+.main-button {
+	background-color: white;
+	border: none;
+	color: black;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 2px;
+}
+
+.main-button:hover {
+	background-color: rgb(68, 155, 213);
+}
+
+#main-button {
+	text-align: center;
+	padding: 100px;
+}
+
+.glow {
+	font-size: 80px;
+	color: #fff;
+	text-align: center;
+	-webkit-animation: glow 3s ease-in-out infinite alternate;
+	-moz-animation: glow 3s ease-in-out infinite alternate;
+	animation: glow 3s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+	from {
+		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1707f3, 0 0 40px #2c57c2, 0 0 50px #2b7cf5,
+			0 0 60px #e60073, 0 0 70px #00cbe6;
+	}
+}
