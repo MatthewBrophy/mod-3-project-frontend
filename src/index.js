@@ -116,7 +116,7 @@ function showMap() {
 
 	//connect to dark sky api
 	function getWeather(obj) {
-		fetch(`http://localhost:3000/api/v1/weather`, {
+		fetch(WEATHER, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
@@ -154,5 +154,3 @@ function showMap() {
 		console.log('Reached display weather function');
 	}
 }
-
-function renderSplitScreen() {}
