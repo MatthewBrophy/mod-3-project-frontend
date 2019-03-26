@@ -70,31 +70,16 @@ function showMap() {
 			liftCapacity.textContent = `Lift Capacity: ${resort.hourly_lift_capacity} skiers/hr`;
 		}
 
-		let weatherButton = document.createElement('button');
-		weatherButton.classList = 'popup-button';
-		weatherButton.textContent = 'Weather Report';
-		weatherButton.addEventListener('click', function() {
-			getWeather(resort);
-		});
-
-		let websiteButton = document.createElement('button');
-		websiteButton.classList = 'popup-button';
-		websiteButton.textContent = 'Resort Website';
-		websiteButton.addEventListener('click', function() {
-			mainDisplay.innerHTML = '';
-			window.location = resort.official_website;
-		});
-
 		div.appendChild(title);
 		div.appendChild(snowfall);
 		div.appendChild(baseElevation);
 		div.appendChild(topElevation);
 		div.appendChild(liftCapacity);
 
-		createPopup(marker, myLatlng, div, map);
+		createPopupButton(marker, myLatlng, div, map);
 	}
 
-	function createPopup(marker, myLatlng, div, map) {
+	function createPopupButton(marker, myLatlng, div, map) {
 		let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
 		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
 		marker.addEventListener('click', function() {
@@ -145,8 +130,9 @@ function showMap() {
 			})
 		})
 			.then((res) => res.json())
-			.then((results) => {
-				buildWeatherPopup(results);
+			.then((weather) => {
+				buildWeatherPopup(weather);
+				debugger;
 			});
 	}
 
@@ -167,10 +153,13 @@ function showMap() {
 
 		weatherPopup.appendChild(closeButton);
 
-		displayWeather(weather);
+		displayWeather(weatherPopup, weather);
 	}
 
-	function displayWeather() {
+	function displayWeather(weatherPopup, weather) {
+		let weatherSummary = document.createElement('p');
+		weatherSummary.textContent = weather.daily.summary;
+		weatherPopup.appendChild(weatherSummary);
 		console.log('Reached display weather function');
 	}
 }
