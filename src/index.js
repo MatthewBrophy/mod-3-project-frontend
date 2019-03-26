@@ -76,10 +76,10 @@ function showMap() {
 		div.appendChild(topElevation);
 		div.appendChild(liftCapacity);
 
-		createPopupButton(marker, myLatlng, div, map);
+		createPopupButton(resort, marker, myLatlng, div, map);
 	}
 
-	function createPopupButton(marker, myLatlng, div, map) {
+	function createPopupButton(resort, marker, myLatlng, div, map) {
 		let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
 		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
 		marker.addEventListener('click', function() {
@@ -132,7 +132,6 @@ function showMap() {
 			.then((res) => res.json())
 			.then((weather) => {
 				buildWeatherPopup(weather);
-				debugger;
 			});
 	}
 
@@ -142,24 +141,73 @@ function showMap() {
 		let fade = document.getElementById('fade');
 		fade.style.display = 'block';
 
+		let buttonWrapper = document.createElement('div');
+		buttonWrapper.id = 'button-wrapper';
 		let closeButton = document.createElement('button');
 		closeButton.classList = 'close-button';
 		closeButton.textContent = 'Close';
 		closeButton.addEventListener('click', function() {
+			weatherPopup.innerHTML = '';
 			closeButton.remove();
 			weatherPopup.style.display = 'none';
 			fade.style.display = 'none';
 		});
 
-		weatherPopup.appendChild(closeButton);
-
-		displayWeather(weatherPopup, weather);
+		buttonWrapper.appendChild(closeButton);
+		displayWeather(weatherPopup, weather, buttonWrapper);
 	}
 
-	function displayWeather(weatherPopup, weather) {
+	function displayWeather(weatherPopup, weather, buttonWrapper) {
+		let lineBreak = document.createElement('br');
+		let iconWrapper = document.createElement('div');
+		iconWrapper.id = 'icon-wrapper';
+		let weatherIcon = document.createElement('i');
+		let weatherBlurb = document.createElement('span');
+		weatherBlurb.textContent = weather.currently.summary;
+
+		weatherIcon.id = 'lg-weather';
+		weatherIcon.classList = weatherIconFunction(weather);
 		let weatherSummary = document.createElement('p');
 		weatherSummary.textContent = weather.daily.summary;
+
+		iconWrapper.appendChild(weatherIcon);
+		iconWrapper.appendChild(weatherBlurb);
+		weatherPopup.appendChild(lineBreak);
+		weatherPopup.appendChild(iconWrapper);
 		weatherPopup.appendChild(weatherSummary);
-		console.log('Reached display weather function');
+		weatherPopup.appendChild(buttonWrapper);
+		console.log(weather);
+	}
+
+	function weatherIconFunction(weather) {
+		switch (weather.currently.icon) {
+			case 'clear-day':
+				return 'fas fa-sun';
+				break;
+			case 'clear-night':
+				return 'fas fa-moon';
+				break;
+			case 'cloudy':
+				return 'fas fa-cloud-sun';
+				break;
+			case 'partly-cloudy-day':
+				return 'fa fa-cloud-sun ';
+				break;
+			case 'partly-cloudy-night':
+				return 'fas fa-cloud-moon';
+				break;
+			case 'snow':
+				return 'fas fa-snowflake';
+				break;
+			case 'rain':
+				return 'fa fa-cloud-rain';
+				break;
+			case 'fog':
+				return 'fas fa-water';
+				break;
+			case 'wind':
+				return 'fas fa-wind';
+				break;
+		}
 	}
 }

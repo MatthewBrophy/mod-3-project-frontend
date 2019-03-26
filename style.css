@@ -64,13 +64,13 @@
 }
 
 .close-button {
+	position: relative;
 	background-color: rgb(241, 43, 43);
 	border: none;
 	color: white;
 	padding: 10px 20px;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
 	font-size: 12px;
 	margin: 2px;
 }
@@ -121,4 +121,17 @@
 	margin-right: 0;
 	padding-left: 0;
 	padding-right: 0;
+}
+
+#lg-weather {
+	font-size: 48px;
+}
+
+#button-wrapper {
+	text-align: center;
+}
+
+#icon-wrapper {
+	margin-bottom: 1em;
+	text-align: center;
 }
