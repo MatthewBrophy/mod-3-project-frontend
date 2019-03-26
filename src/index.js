@@ -1,21 +1,18 @@
-// //snow
-// // 1. Define a color for the snow
-// snowStorm.snowColor = '#fff';
-// // 2. To optimize, define the max number of flakes that can
-// // be shown on screen at once
-// snowStorm.flakesMaxActive = 200;
-// // 3. Allow the snow to flicker in and out of the view
-// snowStorm.useTwinkleEffect = true;
-// // 4. Start the snowstorm!
-// snowStorm.start();
+//snow
+// 1. Define a color for the snow
+snowStorm.snowColor = '#fff';
+// 2. To optimize, define the max number of flakes that can
+// be shown on screen at once
+snowStorm.flakesMaxActive = 200;
+// 3. Allow the snow to flicker in and out of the view
+snowStorm.useTwinkleEffect = true;
+// 4. Start the snowstorm!
+snowStorm.start();
 
 //mapping
 document.body.style.backgroundColor = 'black';
 let welcomeDiv = document.getElementById('main-button');
-let startButton = document.createElement('button');
-startButton.textContent = 'Enter the Gnar';
-startButton.classList = 'main-button';
-welcomeDiv.appendChild(startButton);
+let startButton = document.getElementById('main-button');
 startButton.addEventListener('click', function() {
 	welcomeDiv.remove();
 	showMap();
