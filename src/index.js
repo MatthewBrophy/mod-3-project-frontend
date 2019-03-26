@@ -124,15 +124,34 @@ function showMap() {
 		})
 			.then((res) => res.json())
 			.then((results) => {
-				console.log(results);
+				displayWeather(results);
 			});
 	}
 
 	function displayWeather(weather) {
-		let weatherDiv = document.getElementById('weather');
-		let summary = document.createElement('h3');
-		summary.textContent = weather.daily.summary;
-
-		weatherDiv.appendChild(summary);
+		let displayArea = document.getElementById('main-map');
+		displayArea.innerHTML = '';
+		renderSplitScreen();
+		console.log(weather);
 	}
+}
+
+function renderSplitScreen() {
+	let displayArea = document.getElementById('main-map');
+	let grid = document.createElement('div');
+	grid.classList.add('container');
+	grid.textContent = 'this is a grid';
+	let row = document.createElement('div');
+	row.classList.add('row');
+	row.textContent = 'This is a row';
+	let column1 = document.createElement('div');
+	column1.classList.add('col');
+	column1.textContent = 'Col 1';
+	let column2 = document.createElement('div');
+	column2.classList.add('col');
+	column2.textContent = 'Col 2';
+	displayArea.appendChild(grid);
+	grid.appendChild(row);
+	row.appendChild(column1);
+	row.appendChild(column2);
 }
