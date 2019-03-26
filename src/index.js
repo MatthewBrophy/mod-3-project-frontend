@@ -125,15 +125,13 @@ function showMap() {
 		})
 			.then((res) => res.json())
 			.then((results) => {
-				console.log(results);
+				displayWeather(results);
 			});
 	}
 
 	function displayWeather(weather) {
-		let weatherDiv = document.getElementById('weather');
-		let summary = document.createElement('h3');
-		summary.textContent = weather.daily.summary;
-
-		weatherDiv.appendChild(summary);
+		console.log(weather);
 	}
 }
+
+function renderSplitScreen() {}
