@@ -1,13 +1,13 @@
-//snow
-// 1. Define a color for the snow
-snowStorm.snowColor = '#fff';
-// 2. To optimize, define the max number of flakes that can
-// be shown on screen at once
-snowStorm.flakesMaxActive = 200;
-// 3. Allow the snow to flicker in and out of the view
-snowStorm.useTwinkleEffect = true;
-// 4. Start the snowstorm!
-snowStorm.start();
+// //snow
+// // 1. Define a color for the snow
+// snowStorm.snowColor = '#fff';
+// // 2. To optimize, define the max number of flakes that can
+// // be shown on screen at once
+// snowStorm.flakesMaxActive = 200;
+// // 3. Allow the snow to flicker in and out of the view
+// snowStorm.useTwinkleEffect = true;
+// // 4. Start the snowstorm!
+// snowStorm.start();
 
 //mapping
 document.body.style.backgroundColor = 'black';
@@ -41,87 +41,107 @@ function showMap() {
 			return response.json();
 		})
 		.then(function(resorts) {
-			buildPopUp(resorts);
+			for (resort of resorts) {
+				buildPopUp(resort);
+			}
 		});
 
-	function buildPopUp(resorts) {
-		for (let i = 0; i < resorts.length; i++) {
-			let obj = resorts[i];
-			let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
-			let marker = document.createElement('div');
-			marker.id = 'marker';
+	function buildPopUp(resort) {
+		let myLatlng = new mapboxgl.LngLat(resort.longitude, resort.latitude);
+		let marker = document.createElement('div');
+		marker.id = 'marker';
 
-			let div = window.document.createElement('div');
-			let title = document.createElement('h3');
-			title.textContent = obj.name;
-			let baseElevation = document.createElement('p');
-			if (obj.bottom_elevation) {
-				baseElevation.textContent = `Base Elevation: ${obj.bottom_elevation} ft`;
-			}
-			let topElevation = document.createElement('p');
-			if (obj.top_elevation) {
-				topElevation.textContent = `Top Elevation: ${obj.top_elevation} ft`;
-			}
-			let snowfall = document.createElement('p');
-			snowfall.textContent = `Average Snowfall: ${Math.floor(obj.annual_snowfall / 2.54)} inches`;
-			let liftCapacity = document.createElement('p');
-			if (obj.hourly_lift_capacity) {
-				liftCapacity.textContent = `Lift Capacity: ${obj.hourly_lift_capacity} skiers/hr`;
-			}
-
-			let weatherButton = document.createElement('button');
-			weatherButton.classList = 'popup-button';
-			weatherButton.textContent = 'Weather Report';
-			weatherButton.addEventListener('click', function() {
-				getWeather(obj);
-			});
-
-			let websiteButton = document.createElement('button');
-			websiteButton.classList = 'popup-button';
-			websiteButton.textContent = 'Resort Website';
-			websiteButton.addEventListener('click', function() {
-				mainDisplay.innerHTML = '';
-				window.location = obj.official_website;
-			});
-
-			let zoomOutButton = document.createElement('button');
-			zoomOutButton.classList = 'popup-button';
-			zoomOutButton.textContent = 'Full Extent';
-			zoomOutButton.addEventListener('click', function() {
-				popup.remove();
-				map.flyTo({
-					center: center,
-					zoom: 5.5
-				});
-			});
-
-			div.appendChild(title);
-			div.appendChild(snowfall);
-			div.appendChild(baseElevation);
-			div.appendChild(topElevation);
-			div.appendChild(liftCapacity);
-			div.appendChild(weatherButton);
-			div.appendChild(websiteButton);
-			div.appendChild(zoomOutButton);
-			let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
-			new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
-			marker.addEventListener('click', function() {
-				map.flyTo({
-					center: myLatlng,
-					zoom: 12
-				});
-			});
+		let div = window.document.createElement('div');
+		let title = document.createElement('h3');
+		title.textContent = resort.name;
+		let baseElevation = document.createElement('p');
+		if (resort.bottom_elevation) {
+			baseElevation.textContent = `Base Elevation: ${resort.bottom_elevation} ft`;
 		}
+
+		let topElevation = document.createElement('p');
+		if (resort.top_elevation) {
+			topElevation.textContent = `Top Elevation: ${resort.top_elevation} ft`;
+		}
+		let snowfall = document.createElement('p');
+		snowfall.textContent = `Average Snowfall: ${Math.floor(resort.annual_snowfall / 2.54)} inches`;
+		let liftCapacity = document.createElement('p');
+		if (resort.hourly_lift_capacity) {
+			liftCapacity.textContent = `Lift Capacity: ${resort.hourly_lift_capacity} skiers/hr`;
+		}
+
+		let weatherButton = document.createElement('button');
+		weatherButton.classList = 'popup-button';
+		weatherButton.textContent = 'Weather Report';
+		weatherButton.addEventListener('click', function() {
+			getWeather(resort);
+		});
+
+		let websiteButton = document.createElement('button');
+		websiteButton.classList = 'popup-button';
+		websiteButton.textContent = 'Resort Website';
+		websiteButton.addEventListener('click', function() {
+			mainDisplay.innerHTML = '';
+			window.location = resort.official_website;
+		});
+
+		div.appendChild(title);
+		div.appendChild(snowfall);
+		div.appendChild(baseElevation);
+		div.appendChild(topElevation);
+		div.appendChild(liftCapacity);
+
+		createPopup(marker, myLatlng, div, map);
 	}
 
-	//connect to dark sky api
-	function getWeather(obj) {
+	function createPopup(marker, myLatlng, div, map) {
+		let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
+		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
+		marker.addEventListener('click', function() {
+			map.flyTo({
+				center: myLatlng,
+				zoom: 12
+			});
+		});
+
+		let zoomOutButton = document.createElement('button');
+		zoomOutButton.classList = 'popup-button';
+		zoomOutButton.textContent = 'Full Extent';
+		zoomOutButton.addEventListener('click', function() {
+			popup.remove();
+			map.flyTo({
+				center: center,
+				zoom: 5.5
+			});
+		});
+
+		let weatherButton = document.createElement('button');
+		weatherButton.classList = 'popup-button';
+		weatherButton.textContent = 'Weather Report';
+		weatherButton.addEventListener('click', function() {
+			getWeather(resort);
+		});
+
+		let websiteButton = document.createElement('button');
+		websiteButton.classList = 'popup-button';
+		websiteButton.textContent = 'Resort Website';
+		websiteButton.addEventListener('click', function() {
+			mainDisplay.innerHTML = '';
+			window.location = resort.official_website;
+		});
+
+		div.appendChild(weatherButton);
+		div.appendChild(websiteButton);
+		div.appendChild(zoomOutButton);
+	}
+
+	function getWeather(resort) {
 		fetch(WEATHER, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
-				latitude: `${obj.latitude}`,
-				longitude: `${obj.longitude}`
+				latitude: `${resort.latitude}`,
+				longitude: `${resort.longitude}`
 			})
 		})
 			.then((res) => res.json())
