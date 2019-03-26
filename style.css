@@ -79,6 +79,10 @@
 	}
 }
 
-.main-display {
+.white-text {
 	color: white;
+}
+
+.align-center {
+	text-align: center;
 }
