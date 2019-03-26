@@ -130,11 +130,11 @@ function showMap() {
 		})
 			.then((res) => res.json())
 			.then((weather) => {
-				buildWeatherPopup(weather);
+				buildWeatherPopup(resort, weather);
 			});
 	}
 
-	function buildWeatherPopup(weather) {
+	function buildWeatherPopup(resort, weather) {
 		let weatherPopup = document.getElementById('light');
 		weatherPopup.style.display = 'block';
 		let fade = document.getElementById('fade');
@@ -153,28 +153,59 @@ function showMap() {
 		});
 
 		buttonWrapper.appendChild(closeButton);
-		displayWeather(weatherPopup, weather, buttonWrapper);
+		displayWeather(resort, weatherPopup, weather, buttonWrapper);
 	}
 
-	function displayWeather(weatherPopup, weather, buttonWrapper) {
-		let lineBreak = document.createElement('br');
-		let iconWrapper = document.createElement('div');
-		iconWrapper.id = 'icon-wrapper';
-		let weatherIcon = document.createElement('i');
+	function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
+		// let lineBreak = document.createElement('br');
+		// let iconWrapper = document.createElement('div');
+		// iconWrapper.id = 'icon-wrapper';
+		// let weatherIcon = document.createElement('i');
+		// let weatherBlurb = document.createElement('span');
+		// weatherBlurb.textContent = weather.currently.summary;
+
+		// weatherIcon.id = 'lg-weather';
+		// weatherIcon.classList = weatherIconFunction(weather);
+		// let weatherSummary = document.createElement('p');
+		// weatherSummary.textContent = weather.daily.summary;
+
+		// iconWrapper.appendChild(weatherIcon);
+		// iconWrapper.appendChild(weatherBlurb);
+		// weatherPopup.appendChild(lineBreak);
+		// weatherPopup.appendChild(iconWrapper);
+		// weatherPopup.appendChild(weatherSummary);
+		// weatherPopup.appendChild(buttonWrapper);
+		weatherPopup.innerHTML = '';
+		let mainDisplayPane = document.createElement('div');
+		mainDisplayPane.classList.add('container', 'text-align-center');
+		let titleRow = document.createElement('div');
+		titleRow.id = 'center-text';
+		titleRow.classList.add('row');
+		let titleDiv = document.createElement('div');
+		let title = document.createElement('h4');
+		title.textContent = resort.name;
+
+		let iconRow = document.createElement('div');
+		iconRow.id = 'center-text';
+		iconRow.classList.add('row');
+		let iconDiv = document.createElement('div');
+		let icon = document.createElement('i');
+		icon.classList = weatherIconFunction(weather);
+		icon.id = 'lg-weather';
+
 		let weatherBlurb = document.createElement('span');
-		weatherBlurb.textContent = weather.currently.summary;
+		weatherBlurb.textContent = `    ${weather.currently.summary}`;
 
-		weatherIcon.id = 'lg-weather';
-		weatherIcon.classList = weatherIconFunction(weather);
-		let weatherSummary = document.createElement('p');
-		weatherSummary.textContent = weather.daily.summary;
+		weatherPopup.appendChild(mainDisplayPane);
+		mainDisplayPane.appendChild(titleRow);
+		titleRow.appendChild(titleDiv);
+		titleDiv.appendChild(title);
 
-		iconWrapper.appendChild(weatherIcon);
-		iconWrapper.appendChild(weatherBlurb);
-		weatherPopup.appendChild(lineBreak);
-		weatherPopup.appendChild(iconWrapper);
-		weatherPopup.appendChild(weatherSummary);
-		weatherPopup.appendChild(buttonWrapper);
+		mainDisplayPane.appendChild(iconRow);
+		iconRow.appendChild(iconDiv);
+		iconDiv.appendChild(icon);
+		iconDiv.appendChild(weatherBlurb);
+
 		console.log(weather);
 	}
 
