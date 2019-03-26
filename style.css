@@ -135,3 +135,12 @@
 	margin-bottom: 1em;
 	text-align: center;
 }
+
+#center-text {
+	text-align: center;
+	display: block;
+}
+
+.text-align-center {
+	text-align: center;
+}
