@@ -4,11 +4,10 @@
 }
 
 #main-map {
-	margin: 4em;
+	margin-top: 4em;
+	margin-bottom: 4em;
 	background-color: black;
 	height: 700px;
-	border-style: solid 3px;
-	border-color: white;
 }
 
 p {
@@ -120,6 +119,13 @@ p {
 	}
 }
 
-.main-display {
+.white-text {
 	color: white;
+}
+
+#wide-margins {
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
