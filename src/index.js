@@ -111,7 +111,7 @@ function showMap() {
 		resortButton.classList = 'popup-button';
 		resortButton.textContent = 'Resort Reviews';
 		resortButton.addEventListener('click', function() {
-			getReviews(resort);
+			buildReviewBox(resort);
 		});
 
 		div.appendChild(weatherButton);
@@ -178,7 +178,7 @@ function showMap() {
 		console.log(weather);
 	}
 
-	function getReviews(resort) {
+	function buildReviewBox(resort) {
 		let reviewPopup = document.getElementById('review-light');
 		reviewPopup.style.display = 'block';
 		let fade = document.getElementById('review-fade');
@@ -198,7 +198,34 @@ function showMap() {
 
 		buttonWrapper.appendChild(closeButton);
 		reviewPopup.appendChild(buttonWrapper);
+		getReviews(reviewPopup, resort);
 		console.log('reached review function');
+	}
+
+	function getReviews(resortPopup, resort) {
+		fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`)
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(comments) {
+				for (comment of comments) {
+					displayReviews(resortPopup, resort, comment);
+				}
+			});
+	}
+
+	function displayReviews(resortPopup, resort, comment) {
+		let reviewUl = document.createElement('ul');
+		let reviewDiv = document.createElement('div');
+		let reviewTitle = document.createElement('h4');
+		reviewTitle.textContent = comment.title;
+		let reviewLi = document.createElement('li');
+		reviewLi.textContent = comment.content;
+
+		reviewDiv.appendChild(reviewTitle);
+		reviewDiv.appendChild(reviewLi);
+		reviewUl.appendChild(reviewDiv);
+		resortPopup.appendChild(reviewUl);
 	}
 
 	function weatherIconFunction(weather) {
@@ -210,7 +237,7 @@ function showMap() {
 				return 'fas fa-moon';
 				break;
 			case 'cloudy':
-				return 'fas fa-cloud-sun';
+				return 'fas fa-cloud';
 				break;
 			case 'partly-cloudy-day':
 				return 'fa fa-cloud-sun ';
