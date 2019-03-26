@@ -23,6 +23,7 @@ startButton.addEventListener('click', function() {
 
 function showMap() {
 	const RESORTS = 'http://localhost:3000/api/v1/resorts';
+	const WEATHER = 'http://localhost:3000/api/v1/weather';
 
 	let center = [ -118.291388, 45.97 ];
 	mapboxgl.accessToken =
@@ -125,12 +126,32 @@ function showMap() {
 		})
 			.then((res) => res.json())
 			.then((results) => {
-				displayWeather(results);
+				buildWeatherPopup(results);
 			});
 	}
 
-	function displayWeather(weather) {
-		console.log(weather);
+	function buildWeatherPopup(weather) {
+		let weatherPopup = document.getElementById('light');
+		weatherPopup.style.display = 'block';
+		let fade = document.getElementById('fade');
+		fade.style.display = 'block';
+
+		let closeButton = document.createElement('button');
+		closeButton.classList = 'close-button';
+		closeButton.textContent = 'Close';
+		closeButton.addEventListener('click', function() {
+			closeButton.remove();
+			weatherPopup.style.display = 'none';
+			fade.style.display = 'none';
+		});
+
+		weatherPopup.appendChild(closeButton);
+
+		displayWeather(weather);
+	}
+
+	function displayWeather() {
+		console.log('Reached display weather function');
 	}
 }
 
