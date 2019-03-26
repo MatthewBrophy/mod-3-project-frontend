@@ -200,6 +200,16 @@ function showMap() {
 		reviewPopup.appendChild(buttonWrapper);
 		getReviews(reviewPopup, resort);
 		console.log('reached review function');
+
+		let newCommentButton = document.createElement('button');
+		newCommentButton.classList = 'popup-button';
+		newCommentButton.textContent = 'Leave a review';
+		newCommentButton.addEventListener('click', function() {
+			reviewPopup.innerHTML = '';
+			renderReviewForm(reviewPopup, resort);
+		});
+
+		reviewPopup.appendChild(newCommentButton);
 	}
 
 	function getReviews(resortPopup, resort) {
@@ -226,6 +236,62 @@ function showMap() {
 		reviewDiv.appendChild(reviewLi);
 		reviewUl.appendChild(reviewDiv);
 		resortPopup.appendChild(reviewUl);
+	}
+
+	function renderReviewForm(reviewPopup, resort) {
+		let reviewForm = document.createElement('form');
+
+		let titleDiv = document.createElement('div');
+		titleDiv.classList = 'form-group';
+
+		let titleLabel = document.createElement('label');
+		titleLabel.for = 'review-title';
+		titleLabel.textContent = 'Title';
+
+		let titleInput = document.createElement('input');
+		titleInput.classList = 'title-control';
+		titleInput.id = 'review-title';
+
+		let contentDiv = document.createElement('div');
+		contentDiv.classList = 'form-group';
+
+		let contentLabel = document.createElement('label');
+		contentLabel.for = 'review-content';
+		contentLabel.textContent = 'Review';
+
+		let contentInput = document.createElement('textarea');
+		contentInput.classList = 'form-control';
+		contentInput.id = 'review-content';
+
+		let submitButton = document.createElement('button');
+		submitButton.textContent = 'Submit';
+		submitButton.type = 'submit';
+		submitButton.classList = 'popup-button';
+
+		reviewForm.addEventListener('submit', function(event) {
+			event.preventDefault();
+			let titleEntry = document.getElementById('review-title').value;
+			let contentEntry = document.getElementById('review-content').value;
+			persistComment(titleEntry, contentEntry, resort);
+		});
+
+		titleDiv.appendChild(titleLabel);
+		titleDiv.appendChild(titleInput);
+
+		contentDiv.appendChild(contentLabel);
+		contentDiv.appendChild(contentInput);
+
+		reviewForm.appendChild(titleDiv);
+		reviewForm.appendChild(contentDiv);
+
+		reviewForm.appendChild(submitButton);
+		reviewPopup.appendChild(reviewForm);
+	}
+
+	function persistComment(titleEntry, contentEntry, resort) {
+		console.log(resort);
+		console.log(titleEntry);
+		console.log(contentEntry);
 	}
 
 	function weatherIconFunction(weather) {
