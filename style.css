@@ -221,4 +221,21 @@ body {
 
 li {
 	list-style-type: none;
+	text-align: left;
+}
+
+#forecast-summary {
+	text-align: left;
+}
+
+.green-text {
+	color: green;
+}
+
+.orange-text {
+	color: orange;
+}
+
+.red-text {
+	color: red;
 }

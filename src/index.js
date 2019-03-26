@@ -127,24 +127,10 @@ function showMap() {
 		weatherPopup.style.display = 'block';
 		let fade = document.getElementById('fade');
 		fade.style.display = 'block';
-
-		let buttonWrapper = document.createElement('div');
-		buttonWrapper.id = 'button-wrapper';
-		let closeButton = document.createElement('button');
-		closeButton.classList = 'close-button';
-		closeButton.textContent = 'Close';
-		closeButton.addEventListener('click', function() {
-			weatherPopup.innerHTML = '';
-			closeButton.remove();
-			weatherPopup.style.display = 'none';
-			fade.style.display = 'none';
-		});
-
-		buttonWrapper.appendChild(closeButton);
-		displayWeather(resort, weatherPopup, weather, buttonWrapper);
+		displayWeather(resort, weatherPopup, weather);
 	}
 
-	function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
+	function displayWeather(resort, weatherPopup, weather) {
 		// let lineBreak = document.createElement('br');
 		// let iconWrapper = document.createElement('div');
 		// iconWrapper.id = 'icon-wrapper';
@@ -203,6 +189,34 @@ function showMap() {
 		let currentWeatherStats = document.createElement('ul');
 		let currentTemp = document.createElement('li');
 		currentTemp.textContent = `Current Temp: ${weather.currently.temperature} °F`;
+		let currentUvIndex = document.createElement('li');
+		if (weather.currently.uvIndex <= 2) {
+			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} Safe!`;
+			currentUvIndex.classList.add('green-text');
+		} else if (weather.currently.uvIndex >= 3 && weather.currently.uvIndex < 6) {
+			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} Moderate...be mindful.`;
+			currentUvIndex.classList.add('orange-text');
+		} else {
+			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
+			currentUvIndex.classList.add('red-text');
+		}
+
+		let forecastSummary = document.createElement('p');
+		forecastSummary.id = 'forecast-summary';
+		forecastSummary.innerText = weather.daily.summary;
+
+		let closeButtonRow = document.createElement('div');
+		closeButtonRow.classList.add('row');
+		closeButtonRow.id = 'center-text';
+		let closeButton = document.createElement('button');
+		closeButton.classList = 'close-button';
+		closeButton.textContent = 'Close';
+		closeButton.onclick = () => {
+			weatherPopup.innerHTML = '';
+			closeButton.remove();
+			weatherPopup.style.display = 'none';
+			fade.style.display = 'none';
+		};
 
 		weatherPopup.appendChild(mainDisplayPane);
 		mainDisplayPane.appendChild(titleRow);
@@ -224,6 +238,12 @@ function showMap() {
 
 		leftPaneContent.appendChild(currentWeatherStats);
 		currentWeatherStats.appendChild(currentTemp);
+		currentWeatherStats.appendChild(currentUvIndex);
+
+		rightPaneContent.appendChild(forecastSummary);
+
+		mainDisplayPane.appendChild(closeButtonRow);
+		closeButtonRow.appendChild(closeButton);
 
 		console.log(weather);
 	}
