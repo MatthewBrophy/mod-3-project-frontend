@@ -196,6 +196,19 @@ function showMap() {
 		let weatherBlurb = document.createElement('span');
 		weatherBlurb.textContent = `    ${weather.currently.summary}`;
 
+		let dualPane = document.createElement('div');
+		dualPane.classList.add('row');
+		let leftPane = document.createElement('div');
+		leftPane.classList.add('col-md-6');
+		let rightPane = document.createElement('div');
+		rightPane.classList.add('col-md-6');
+		let leftPaneContent = document.createElement('div');
+		let leftPaneTitle = document.createElement('p');
+		leftPaneTitle.innerText = 'Current Conditions';
+		let rightPaneContent = document.createElement('div');
+		let rightPaneTitle = document.createElement('p');
+		rightPaneTitle.innerText = weather.daily.summary;
+
 		weatherPopup.appendChild(mainDisplayPane);
 		mainDisplayPane.appendChild(titleRow);
 		titleRow.appendChild(titleDiv);
@@ -205,6 +218,14 @@ function showMap() {
 		iconRow.appendChild(iconDiv);
 		iconDiv.appendChild(icon);
 		iconDiv.appendChild(weatherBlurb);
+
+		mainDisplayPane.appendChild(dualPane);
+		dualPane.appendChild(leftPane);
+		dualPane.appendChild(rightPane);
+		leftPane.appendChild(leftPaneContent);
+		rightPane.appendChild(rightPaneContent);
+		leftPaneContent.appendChild(leftPaneTitle);
+		rightPaneContent.appendChild(rightPaneTitle);
 
 		console.log(weather);
 	}

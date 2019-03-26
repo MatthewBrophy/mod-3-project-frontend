@@ -26,12 +26,14 @@
 .white_content {
 	display: none;
 	position: absolute;
-	top: 25%;
-	left: 25%;
-	width: 50%;
-	height: 50%;
-	padding: 16px;
-	border: 16px solid rgb(0, 229, 255);
+	top: 50%;
+	left: 50%;
+	width: 90%;
+	height: 70%;
+	margin-left: -45%; /* negative half of width above */
+	margin-top: -30%; /* negative half of height above */
+	border: 8px solid rgb(0, 229, 255);
+	border-radius: 25px;
 	background-color: white;
 	z-index: 1002;
 	overflow: auto;
