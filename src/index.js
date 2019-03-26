@@ -87,6 +87,7 @@ function showMap() {
 			zoomOutButton.classList = 'popup-button';
 			zoomOutButton.textContent = 'Full Extent';
 			zoomOutButton.addEventListener('click', function() {
+				popup.remove();
 				map.flyTo({
 					center: center,
 					zoom: 5.5

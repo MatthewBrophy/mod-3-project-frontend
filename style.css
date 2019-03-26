@@ -6,7 +6,9 @@
 #main-map {
 	margin: 4em;
 	background-color: black;
-	height: 800px;
+	height: 700px;
+	border-style: solid 3px;
+	border-color: white;
 }
 
 #weather {
