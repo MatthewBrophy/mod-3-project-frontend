@@ -325,6 +325,8 @@ function showMap() {
 			let titleEntry = document.getElementById('review-title').value;
 			let contentEntry = document.getElementById('review-content').value;
 			persistComment(titleEntry, contentEntry, resort);
+			reviewPopup.innerHTML = '';
+			buildReviewBox(resort);
 		});
 
 		titleDiv.appendChild(titleLabel);
@@ -341,9 +343,19 @@ function showMap() {
 	}
 
 	function persistComment(titleEntry, contentEntry, resort) {
-		console.log(resort);
-		console.log(titleEntry);
-		console.log(contentEntry);
+		let newReview = {
+			resort_id: resort.id,
+			date: null,
+			title: titleEntry,
+			content: contentEntry
+		};
+		fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(newReview)
+		});
 	}
 
 	function weatherIconFunction(weather) {
