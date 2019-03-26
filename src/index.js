@@ -1,84 +1,125 @@
-// //snow
-// // 1. Define a color for the snow
-// snowStorm.snowColor = '#fff';
-// // 2. To optimize, define the max number of flakes that can
-// // be shown on screen at once
-// snowStorm.flakesMaxActive = 200;
-// // 3. Allow the snow to flicker in and out of the view
-// snowStorm.useTwinkleEffect = true;
-// // 4. Start the snowstorm!
-// snowStorm.start();
+//snow
+// 1. Define a color for the snow
+snowStorm.snowColor = '#fff';
+// 2. To optimize, define the max number of flakes that can
+// be shown on screen at once
+snowStorm.flakesMaxActive = 200;
+// 3. Allow the snow to flicker in and out of the view
+snowStorm.useTwinkleEffect = true;
+// 4. Start the snowstorm!
+snowStorm.start();
 
 //mapping
-const RESORTS = 'http://localhost:3000/api/v1/resorts';
+document.body.style.backgroundColor = 'black';
+function showMap() {
+	const RESORTS = 'http://localhost:3000/api/v1/resorts';
 
-let center = [ -98.5795, 39.8282 ];
-mapboxgl.accessToken =
-	'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
+	let center = [ -118.291388, 45.97 ];
+	mapboxgl.accessToken =
+		'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
 
-var map = new mapboxgl.Map({
-	container: 'main-map',
-	center: center,
-	zoom: 3,
-	style: 'mapbox://styles/mapbox/outdoors-v9'
-});
-
-fetch(RESORTS)
-	.then(function(response) {
-		return response.json();
-	})
-	.then(function(resorts) {
-		buildPopUp(resorts);
+	let map = new mapboxgl.Map({
+		container: 'main-map',
+		center: center,
+		zoom: 5.5,
+		style: 'mapbox://styles/mapbox/outdoors-v9'
 	});
 
-function buildPopUp(resorts) {
-	for (let i = 0; i < resorts.length; i++) {
-		let obj = resorts[i];
-		let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
-		let marker = document.createElement('div');
-		marker.id = 'marker';
-		var div = window.document.createElement('div');
-		var title = document.createElement('h3');
-		let weatherButton = document.createElement('button');
-		weatherButton.textContent = 'Weather Report';
-		weatherButton.addEventListener('click', function() {
-			getWeather(obj);
-		});
-		let websiteButton = document.createElement('button');
-		websiteButton.textContent = 'Resort Website';
-		websiteButton.addEventListener('click', function() {
-			window.location = obj.official_website;
-		});
-		title.textContent = obj.name;
-		div.appendChild(title);
-		div.appendChild(weatherButton);
-		div.appendChild(websiteButton);
-		var popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
-		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
-	}
-}
-
-//connect to dark sky api
-function getWeather(obj) {
-	console.log('reached weather function');
-	console.log(obj);
-	let WEATHER_API = `https://weather-app-rails.herokuapp.com/weather?loc=${obj.latitude}_${obj.longitude}`;
-	fetch(WEATHER_API)
+	fetch(RESORTS)
 		.then(function(response) {
 			return response.json();
 		})
-		.then(function(weather) {
-			displayWeather(weather);
+		.then(function(resorts) {
+			buildPopUp(resorts);
 		});
+
+	function buildPopUp(resorts) {
+		let mainDisplay = document.getElementById('main');
+		for (let i = 0; i < resorts.length; i++) {
+			let obj = resorts[i];
+			let myLatlng = new mapboxgl.LngLat(obj.longitude, obj.latitude);
+			let marker = document.createElement('div');
+			marker.id = 'marker';
+
+			let div = window.document.createElement('div');
+			let title = document.createElement('h3');
+			title.textContent = obj.name;
+			let baseElevation = document.createElement('p');
+			baseElevation.textContent = `Base Elevation: ${obj.bottom_elevation} ft`;
+			let topElevation = document.createElement('p');
+			topElevation.textContent = `Top Elevation: ${obj.top_elevation} ft`;
+			let snowfall = document.createElement('p');
+			snowfall.textContent = `Average Snowfall: ${Math.floor(obj.annual_snowfall / 2.54)} inches`;
+			let liftCapacity = document.createElement('p');
+			liftCapacity.textContent = `Lift Capacity: ${obj.hourly_lift_capacity} skiers/hr`;
+
+			let weatherButton = document.createElement('button');
+			weatherButton.classList = 'popup-button';
+			weatherButton.textContent = 'Weather Report';
+			weatherButton.addEventListener('click', function() {
+				getWeather(obj);
+			});
+
+			let websiteButton = document.createElement('button');
+			websiteButton.classList = 'popup-button';
+			websiteButton.textContent = 'Resort Website';
+			websiteButton.addEventListener('click', function() {
+				mainDisplay.innerHTML = '';
+				window.location = obj.official_website;
+			});
+
+			let zoomOutButton = document.createElement('button');
+			zoomOutButton.classList = 'popup-button';
+			zoomOutButton.textContent = 'Full Extent';
+			zoomOutButton.addEventListener('click', function() {
+				map.flyTo({
+					center: center,
+					zoom: 5.5
+				});
+			});
+
+			div.appendChild(title);
+			div.appendChild(snowfall);
+			div.appendChild(baseElevation);
+			div.appendChild(topElevation);
+			div.appendChild(liftCapacity);
+			div.appendChild(weatherButton);
+			div.appendChild(websiteButton);
+			div.appendChild(zoomOutButton);
+			let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
+			new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
+			marker.addEventListener('click', function() {
+				map.flyTo({
+					center: myLatlng,
+					zoom: 12
+				});
+			});
+		}
+	}
+
+	//connect to dark sky api
+	function getWeather(obj) {
+		fetch(`http://localhost:3000/api/v1/weather`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				latitude: `${obj.latitude}`,
+				longitude: `${obj.longitude}`
+			})
+		})
+			.then((res) => res.json())
+			.then((results) => {
+				console.log(results);
+			});
+	}
+
+	function displayWeather(weather) {
+		let weatherDiv = document.getElementById('weather');
+		let summary = document.createElement('h3');
+		summary.textContent = weather.daily.summary;
+
+		weatherDiv.appendChild(summary);
+	}
 }
 
-function displayWeather(weather) {
-	console.log(weather);
-	let mapDiv = document.getElementById('map-container');
-	let weatherDiv = document.createElement('div');
-	let summary = document.createElement('h3');
-	summary.textContent = weather.summary;
-
-	weatherDiv.appendChild(summary);
-	// mapDiv.appendChild(weatherDiv);
-}
+showMap();

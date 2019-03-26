@@ -1,53 +1,41 @@
 #header {
+	color: white;
 	text-align: center;
 }
 
 #main-map {
 	margin: 4em;
 	background-color: black;
-	height: 1000px;
+	height: 800px;
 }
 
-/* Add a black background color to the top navigation */
-.topnav {
-	background-color: white;
-	overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-	float: left;
-	display: block;
-	color: #f2f2f2;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-	background-color: #ddd;
-	color: black;
-}
-
-/* Add an active class to highlight the current page */
-.active {
-	background-color: #3186aa;
-	color: white;
-}
-
-/* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-	display: none;
+#weather {
+	margin: 4em;
+	height: 200px;
 }
 
 #marker {
-	background-image: url('https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-2/60/011_053_athlete_sportsman_skier_olympian_human_avatar-512.png');
+	background-image: url('https://cdn2.iconfinder.com/data/icons/webstore/512/map_marker-512.png');
 	background-color: none;
 	background-repeat: no-repeat;
 	background-size: contain;
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
+}
+
+.popup-button {
+	background-color: rgb(43, 129, 241);
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 2px;
+}
+
+.popup-button:hover {
+	background-color: rgb(57, 69, 235);
 }
