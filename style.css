@@ -252,5 +252,9 @@ canvas {
 
 #logo {
 	margin-top: 40px;
-	width: 40%;
+	width: 30%;
+}
+
+#main-image {
+	color: white;
 }
