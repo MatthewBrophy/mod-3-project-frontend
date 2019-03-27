@@ -121,6 +121,11 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day2Img.id = 'sm-weather';
 	day2Img.classList = forecast2IconFunction(weather);
 	day2Img.classList.add('card-img-top');
+	let day2CardBody = document.createElement('div');
+	day2CardBody.classList.add('card-body');
+	day2CardBody.id = 'cardBody';
+	let day2Title = document.createElement('h5');
+	day2Title.innerText = new Date(weather.daily.data[2].time * 1000).toString().slice(0, 3);
 
 	let day3forecast = document.createElement('div');
 	day3forecast.classList.add('card');
@@ -199,6 +204,8 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 
 	forecastRow.appendChild(day2forecast);
 	day2forecast.appendChild(day2Img);
+	day2forecast.appendChild(day2CardBody);
+	day2CardBody.appendChild(day2Title);
 
 	forecastRow.appendChild(day3forecast);
 	day3forecast.appendChild(day3Img);
