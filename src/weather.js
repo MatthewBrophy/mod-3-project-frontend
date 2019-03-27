@@ -60,6 +60,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	weatherBlurb.id = 'weatherBlurb';
 	weatherBlurb.textContent = `    ${weather.currently.summary}`;
 
+	//weather display pane//
 	let dualPane = document.createElement('div');
 	dualPane.classList.add('row');
 	let leftPane = document.createElement('div');
@@ -75,9 +76,13 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	rightPaneTitle.id = 'pane-title';
 	rightPaneTitle.innerText = 'Weekly Summary';
 
+	//current weather//
 	let currentWeatherStats = document.createElement('ul');
 	let currentTemp = document.createElement('li');
 	currentTemp.textContent = `Temperature: ${weather.currently.temperature} °F`;
+
+	let currentCloudCover = document.createElement('li');
+	currentCloudCover.innerText = `Cloud Cover: ${weather.currently.cloudCover * 100}%`;
 
 	let currentUvIndex = document.createElement('li');
 	if (weather.currently.uvIndex <= 2) {
@@ -192,15 +197,6 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day5weatherDetail.classList.add('card-text');
 	day5weatherDetail.innerText = weather.daily.data[5].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
-	/* <div class="card">
-			<img class="card-img-top" src="..." alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-			</div>
-  </div> */
-
 	weatherPopup.appendChild(mainDisplayPane);
 	mainDisplayPane.appendChild(titleRow);
 	titleRow.appendChild(titleDiv);
@@ -221,6 +217,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 
 	leftPaneContent.appendChild(currentWeatherStats);
 	currentWeatherStats.appendChild(currentTemp);
+	currentWeatherStats.appendChild(currentCloudCover);
 	currentWeatherStats.appendChild(currentUvIndex);
 	currentWeatherStats.appendChild(currentWindSpeed);
 
