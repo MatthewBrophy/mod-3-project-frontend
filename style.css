@@ -1,11 +1,11 @@
 #x {
 	position: absolute;
-	right: 5px;
-	top: 5px;
+	right: 2px;
+	top: 2px;
 	border: 0;
+	background-color: red;
 	border-radius: 3px;
 	cursor: pointer;
-	background-color: red;
 	font-size: 14px;
 }
 
@@ -15,6 +15,7 @@
 
 #body {
 	background-color: black;
+	overflow: hidden;
 }
 
 #header {
@@ -85,21 +86,6 @@
 
 .popup-button:hover {
 	background-color: rgb(57, 69, 235);
-}
-
-.close-button {
-	position: relative;
-	background-color: rgb(241, 43, 43);
-	border: none;
-	color: white;
-	text-align: center;
-	text-decoration: none;
-	font-size: 12px;
-	border-radius: 50%;
-}
-
-.close-button:hover {
-	background-color: rgb(244, 82, 82);
 }
 
 .main-button {
@@ -174,6 +160,7 @@
 	top: 50%;
 	transform: translateY(-50%);
 	width: 320px;
+	margin-bottom: 500px;
 }
 
 .shape {
@@ -266,4 +253,10 @@ li {
 
 #cardBody {
 	padding: 0;
+}
+
+canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
