@@ -88,22 +88,6 @@
 	background-color: rgb(57, 69, 235);
 }
 
-.main-button {
-	background-color: white;
-	border: none;
-	color: black;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 20px;
-	margin: 2px;
-}
-
-.main-button:hover {
-	background-color: rgb(68, 155, 213);
-}
-
 .glow {
 	font-size: 80px;
 	color: #fff;
@@ -150,7 +134,7 @@
 
 #main-button {
 	text-align: center;
-	margin-top: 30em;
+	margin-top: 10em;
 }
 
 .svg-wrapper {
@@ -264,4 +248,9 @@ canvas {
 	position: absolute;
 	top: 0;
 	left: 0;
+}
+
+#logo {
+	margin-top: 40px;
+	width: 40%;
 }
