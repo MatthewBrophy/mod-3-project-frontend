@@ -27,7 +27,7 @@
 #main-map {
 	margin-top: 2em;
 	background-color: black;
-	height: 550px;
+	height: 600px;
 	border-radius: 3px;
 }
 
@@ -131,12 +131,6 @@
 	from {
 		text-shadow: 0 0 10px rgba(35, 173, 255, 1);
 	}
-}
-
-#wide-margins {
-	margin-bottom: 1em;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 #lg-weather {
