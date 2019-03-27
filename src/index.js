@@ -127,10 +127,24 @@ function showMap() {
 		weatherPopup.style.display = 'block';
 		let fade = document.getElementById('fade');
 		fade.style.display = 'block';
-		displayWeather(resort, weatherPopup, weather);
+
+		let buttonWrapper = document.createElement('div');
+		buttonWrapper.id = 'button-wrapper';
+		let closeButton = document.createElement('button');
+		closeButton.classList = 'close-button';
+		closeButton.textContent = 'Close';
+		closeButton.addEventListener('click', function() {
+			weatherPopup.innerHTML = '';
+			closeButton.remove();
+			weatherPopup.style.display = 'none';
+			fade.style.display = 'none';
+		});
+
+		buttonWrapper.appendChild(closeButton);
+		displayWeather(resort, weatherPopup, weather, buttonWrapper);
 	}
 
-	function displayWeather(resort, weatherPopup, weather) {
+	function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 		weatherPopup.innerHTML = '';
 		let mainDisplayPane = document.createElement('div');
 		mainDisplayPane.classList.add('container', 'text-align-center');
@@ -225,11 +239,7 @@ function showMap() {
 		leftPaneContent.appendChild(currentWeatherStats);
 		currentWeatherStats.appendChild(currentTemp);
 		currentWeatherStats.appendChild(currentUvIndex);
-
-		rightPaneContent.appendChild(forecastSummary);
-
-		mainDisplayPane.appendChild(closeButtonRow);
-		closeButtonRow.appendChild(closeButton);
+		currentWeatherStats.appendChild(currentWindSpeed);
 
 		console.log(weather);
 	}
