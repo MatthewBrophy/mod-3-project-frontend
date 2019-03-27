@@ -42,12 +42,12 @@
 }
 
 #marker {
-	background-image: url('https://cdn2.iconfinder.com/data/icons/webstore/512/map_marker-512.png');
+	background-image: url('https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-2/60/011_053_athlete_sportsman_skier_olympian_human_avatar-512.png');
 	background-color: none;
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 }
 
