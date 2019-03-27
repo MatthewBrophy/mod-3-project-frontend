@@ -131,6 +131,10 @@
 	padding-bottom: 25px;
 }
 
+#sm-weather {
+	font-size: 24pt;
+}
+
 #button-wrapper {
 	text-align: center;
 }
