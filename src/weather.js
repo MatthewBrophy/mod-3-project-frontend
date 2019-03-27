@@ -79,25 +79,25 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	//current weather//
 	let currentWeatherStats = document.createElement('ul');
 	let currentTemp = document.createElement('li');
-	currentTemp.textContent = `Temperature: ${weather.currently.temperature} °F`;
+	currentTemp.textContent = `Temperature:		${weather.currently.temperature} °F`;
 
 	let currentCloudCover = document.createElement('li');
-	currentCloudCover.innerText = `Cloud Cover: ${weather.currently.cloudCover * 100}%`;
+	currentCloudCover.innerText = `Cloud Cover:		${weather.currently.cloudCover * 100}%`;
 
 	let currentUvIndex = document.createElement('li');
 	if (weather.currently.uvIndex <= 2) {
-		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Safe!`;
+		currentUvIndex.innerText = `UV Index:		${weather.currently.uvIndex} Safe!`;
 		currentUvIndex.classList.add('green-text');
 	} else if (weather.currently.uvIndex >= 3 && weather.currently.uvIndex < 6) {
-		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Moderate...Lube up BROHAM!.`;
+		currentUvIndex.innerText = `UV Index:		${weather.currently.uvIndex} Moderate...Lube up BROHAM!.`;
 		currentUvIndex.classList.add('orange-text');
 	} else {
-		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
+		currentUvIndex.innerText = `UV Index:		${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
 		currentUvIndex.classList.add('red-text');
 	}
 
 	let currentWindSpeed = document.createElement('li');
-	currentWindSpeed.innerText = `Wind Speed ${weather.currently.windSpeed} mph`;
+	currentWindSpeed.innerText = `Wind Speed:		${weather.currently.windSpeed} mph`;
 
 	let forecastSummary = document.createElement('p');
 	forecastSummary.id = 'forecast-summary';
