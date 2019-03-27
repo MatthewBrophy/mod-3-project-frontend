@@ -6,10 +6,9 @@
 }
 
 #main-map {
-	margin-top: 4em;
-	margin-bottom: 10em;
+	margin-top: 2em;
 	background-color: black;
-	height: 700px;
+	height: 550px;
 }
 
 .black_overlay {
@@ -33,7 +32,7 @@
 	width: 90%;
 	height: 70%;
 	margin-left: -45%; /* negative half of width above */
-	margin-top: -30%; /* negative half of height above */
+	margin-top: -20%; /* negative half of height above */
 	box-shadow: 0 0 20px rgba(35, 173, 255, 1);
 	border-radius: 25px;
 	background-color: white;
@@ -115,8 +114,7 @@
 }
 
 #wide-margins {
-	margin-left: 0;
-	margin-right: 0;
+	margin: auto;
 	padding-left: 0;
 	padding-right: 0;
 }

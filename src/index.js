@@ -2,9 +2,7 @@
 document.body.style.backgroundColor = 'black';
 let welcomeDiv = document.getElementById('main-button');
 let startButton = document.getElementById('main-button');
-let snowFlake = document.getElementById('snowflake');
 startButton.addEventListener('click', function() {
-	snowFlake.innerHTML = '';
 	welcomeDiv.remove();
 	showMap();
 });
@@ -12,7 +10,7 @@ startButton.addEventListener('click', function() {
 function showMap() {
 	const RESORTS = 'http://localhost:3000/api/v1/resorts';
 	const WEATHER = 'http://localhost:3000/api/v1/weather';
-	let test = [];
+
 	let center = [ -118.291388, 45.97 ];
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
@@ -240,6 +238,9 @@ function showMap() {
 		currentWeatherStats.appendChild(currentTemp);
 		currentWeatherStats.appendChild(currentUvIndex);
 		currentWeatherStats.appendChild(currentWindSpeed);
+
+		mainDisplayPane.appendChild(closeButtonRow);
+		closeButtonRow.appendChild(closeButton);
 
 		console.log(weather);
 	}
