@@ -7,8 +7,8 @@ function buildReviewBox(resort) {
 	let buttonWrapper = document.createElement('div');
 	buttonWrapper.id = 'button-wrapper';
 	let closeButton = document.createElement('button');
-	closeButton.classList = 'close-button';
-	closeButton.textContent = 'Close';
+	closeButton.id = 'x';
+	closeButton.textContent = 'x';
 	closeButton.addEventListener('click', function() {
 		reviewPopup.innerHTML = '';
 		closeButton.remove();
@@ -28,7 +28,6 @@ function buildReviewBox(resort) {
 		reviewPopup.innerHTML = '';
 		renderReviewForm(reviewPopup, resort);
 	});
-
 	reviewPopup.appendChild(newCommentButton);
 }
 
@@ -39,7 +38,6 @@ function getReviews(resortPopup, resort) {
 		})
 		.then(function(comments) {
 			for (comment of comments) {
-				debugger;
 				displayReviews(resortPopup, resort, comment);
 			}
 		});
@@ -48,6 +46,7 @@ function getReviews(resortPopup, resort) {
 function displayReviews(resortPopup, resort, comment) {
 	let reviewUl = document.createElement('ul');
 	let reviewDiv = document.createElement('div');
+	reviewDiv.style.overflow = 'auto';
 	let reviewTitle = document.createElement('h4');
 	reviewTitle.textContent = comment.title;
 	let reviewLi = document.createElement('li');

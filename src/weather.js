@@ -155,8 +155,8 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	closeButtonRow.classList.add('row');
 	closeButtonRow.id = 'center-text';
 	let closeButton = document.createElement('button');
-	closeButton.classList = 'close-button';
-	closeButton.textContent = 'Close';
+	closeButton.id = 'x';
+	closeButton.textContent = 'x';
 	closeButton.onclick = () => {
 		weatherPopup.innerHTML = '';
 		closeButton.remove();
