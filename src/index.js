@@ -12,7 +12,7 @@ startButton.addEventListener('click', function() {
 function showMap() {
 	const RESORTS = 'http://localhost:3000/api/v1/resorts';
 	const WEATHER = 'http://localhost:3000/api/v1/weather';
-
+	let test = [];
 	let center = [ -118.291388, 45.97 ];
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
