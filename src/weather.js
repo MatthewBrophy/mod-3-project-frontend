@@ -84,7 +84,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Safe!`;
 		currentUvIndex.classList.add('green-text');
 	} else if (weather.currently.uvIndex >= 3 && weather.currently.uvIndex < 6) {
-		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Moderate...be mindful.`;
+		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Moderate...Lube up BROHAM!.`;
 		currentUvIndex.classList.add('orange-text');
 	} else {
 		currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
@@ -111,6 +111,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day1Img.classList.add('card-img-top');
 	let day1CardBody = document.createElement('div');
 	day1CardBody.classList.add('card-body');
+	day1CardBody.id = 'cardBody';
 	let day1Title = document.createElement('h5');
 	day1Title.innerText = new Date(weather.daily.data[1].time * 1000).toString().slice(0, 3);
 
