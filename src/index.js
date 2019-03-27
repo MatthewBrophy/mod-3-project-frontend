@@ -143,24 +143,6 @@ function showMap() {
 	}
 
 	function displayWeather(resort, weatherPopup, weather) {
-		// let lineBreak = document.createElement('br');
-		// let iconWrapper = document.createElement('div');
-		// iconWrapper.id = 'icon-wrapper';
-		// let weatherIcon = document.createElement('i');
-		// let weatherBlurb = document.createElement('span');
-		// weatherBlurb.textContent = weather.currently.summary;
-
-		// weatherIcon.id = 'lg-weather';
-		// weatherIcon.classList = weatherIconFunction(weather);
-		// let weatherSummary = document.createElement('p');
-		// weatherSummary.textContent = weather.daily.summary;
-
-		// iconWrapper.appendChild(weatherIcon);
-		// iconWrapper.appendChild(weatherBlurb);
-		// weatherPopup.appendChild(lineBreak);
-		// weatherPopup.appendChild(iconWrapper);
-		// weatherPopup.appendChild(weatherSummary);
-		// weatherPopup.appendChild(buttonWrapper);
 		weatherPopup.innerHTML = '';
 		let mainDisplayPane = document.createElement('div');
 		mainDisplayPane.classList.add('container', 'text-align-center');
@@ -200,16 +182,17 @@ function showMap() {
 
 		let currentWeatherStats = document.createElement('ul');
 		let currentTemp = document.createElement('li');
-		currentTemp.textContent = `Current Temp: ${weather.currently.temperature} °F`;
+		currentTemp.textContent = `Temperature: ${weather.currently.temperature} °F`;
+
 		let currentUvIndex = document.createElement('li');
 		if (weather.currently.uvIndex <= 2) {
-			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} Safe!`;
+			currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Safe!`;
 			currentUvIndex.classList.add('green-text');
 		} else if (weather.currently.uvIndex >= 3 && weather.currently.uvIndex < 6) {
-			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} Moderate...be mindful.`;
+			currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} Moderate...be mindful.`;
 			currentUvIndex.classList.add('orange-text');
 		} else {
-			currentUvIndex.innerText = `Current UV Index: ${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
+			currentUvIndex.innerText = `UV Index: ${weather.currently.uvIndex} STAY INSIDE BRAH'!`;
 			currentUvIndex.classList.add('red-text');
 		}
 
