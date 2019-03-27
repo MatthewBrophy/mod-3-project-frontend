@@ -8,16 +8,17 @@ function showMap() {
 	let map = new mapboxgl.Map({
 		container: 'main-map',
 		center: center,
-		zoom: 5.5,
-		maxZoom: 10,
-		style: 'mapbox://styles/mapbox/outdoors-v9'
+		zoom: 4.5,
+		//maxZoom: 10,
+		style: 'mapbox://styles/mapbox/dark-v10'
 	});
 
-	map.addControl(
-		new MapboxGeocoder({
-			accessToken: mapboxgl.accessToken
-		})
-	);
+	let geoLocate = new MapboxGeocoder({
+		accessToken: mapboxgl.accessToken,
+		zoom: 10
+	});
+	map.addControl(geoLocate);
+
 	map.addControl(new mapboxgl.NavigationControl());
 
 	fetch(RESORTS)
