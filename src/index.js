@@ -1,7 +1,8 @@
 //welcome screen
 document.body.style.backgroundColor = 'black';
 let welcomeDiv = document.getElementById('main-button');
-welcomeDiv.addEventListener('click', function() {
+let startButton = document.getElementById('main-button');
+startButton.addEventListener('click', function() {
 	welcomeDiv.remove();
 	showMap();
 });
@@ -158,7 +159,7 @@ function showMap() {
 		titleRow.id = 'center-text';
 		titleRow.classList.add('row');
 		let titleDiv = document.createElement('div');
-		let title = document.createElement('h2');
+		let title = document.createElement('h1');
 		title.textContent = resort.name;
 
 		let iconRow = document.createElement('div');
@@ -211,6 +212,26 @@ function showMap() {
 		forecastSummary.id = 'forecast-summary';
 		forecastSummary.innerText = weather.daily.summary;
 
+		let forecastDisplay = document.createElement('div');
+		forecastDisplay.classList.add('container');
+		let forecastRow = document.createElement('div');
+		forecastRow.classList.add('card-group');
+		let day1forecast = document.createElement('div');
+		day1forecast.classList.add('card');
+		day1forecast.innerText = 'diddledaddle';
+		let day2forecast = document.createElement('div');
+		day2forecast.classList.add('card');
+		day2forecast.innerText = 'diddledaddle';
+		let day3forecast = document.createElement('div');
+		day3forecast.classList.add('card');
+		day3forecast.innerText = 'diddledaddle';
+		let day4forecast = document.createElement('div');
+		day4forecast.classList.add('card');
+		day4forecast.innerText = 'diddledaddle';
+		let day5forecast = document.createElement('div');
+		day5forecast.classList.add('card');
+		day5forecast.innerText = 'diddledaddle';
+
 		let closeButtonRow = document.createElement('div');
 		closeButtonRow.classList.add('row');
 		closeButtonRow.id = 'center-text';
@@ -246,6 +267,18 @@ function showMap() {
 		currentWeatherStats.appendChild(currentTemp);
 		currentWeatherStats.appendChild(currentUvIndex);
 		currentWeatherStats.appendChild(currentWindSpeed);
+
+		rightPaneContent.appendChild(forecastSummary);
+		rightPaneContent.appendChild(forecastDisplay);
+		forecastDisplay.appendChild(forecastRow);
+		forecastRow.appendChild(day1forecast);
+		forecastRow.appendChild(day2forecast);
+		forecastRow.appendChild(day3forecast);
+		forecastRow.appendChild(day4forecast);
+		forecastRow.appendChild(day5forecast);
+
+		mainDisplayPane.appendChild(closeButtonRow);
+		closeButtonRow.appendChild(closeButton);
 
 		console.log(weather);
 	}
