@@ -253,6 +253,11 @@ li {
 
 #cardBody {
 	padding: 0;
+	display: table;
+}
+
+#weather-detail {
+	display: table-cell;
 }
 
 canvas {

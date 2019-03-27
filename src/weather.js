@@ -128,8 +128,9 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	let day1Title = document.createElement('h5');
 	day1Title.innerText = new Date(weather.daily.data[1].time * 1000).toString().slice(0, 3);
 	let day1weatherDetail = document.createElement('p');
+	day1weatherDetail.id = 'weather-detail';
 	day1weatherDetail.classList.add('card-text');
-	day1weatherDetail.innerText = weather.daily.data[1].icon.replace('-', ' ');
+	day1weatherDetail.innerText = weather.daily.data[1].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
 	let day2forecast = document.createElement('div');
 	day2forecast.classList.add('card');
@@ -144,7 +145,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day2Title.innerText = new Date(weather.daily.data[2].time * 1000).toString().slice(0, 3);
 	let day2weatherDetail = document.createElement('p');
 	day2weatherDetail.classList.add('card-text');
-	day2weatherDetail.innerText = weather.daily.data[2].icon.replace('-', ' ');
+	day2weatherDetail.innerText = weather.daily.data[2].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
 	let day3forecast = document.createElement('div');
 	day3forecast.classList.add('card');
@@ -159,7 +160,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day3Title.innerText = new Date(weather.daily.data[3].time * 1000).toString().slice(0, 3);
 	let day3weatherDetail = document.createElement('p');
 	day3weatherDetail.classList.add('card-text');
-	day3weatherDetail.innerText = weather.daily.data[3].icon.replace('-', ' ');
+	day3weatherDetail.innerText = weather.daily.data[3].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
 	let day4forecast = document.createElement('div');
 	day4forecast.classList.add('card');
@@ -174,7 +175,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day4Title.innerText = new Date(weather.daily.data[4].time * 1000).toString().slice(0, 3);
 	let day4weatherDetail = document.createElement('p');
 	day4weatherDetail.classList.add('card-text');
-	day4weatherDetail.innerText = weather.daily.data[4].icon.replace('-', ' ');
+	day4weatherDetail.innerText = weather.daily.data[4].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
 	let day5forecast = document.createElement('div');
 	day5forecast.classList.add('card');
@@ -189,7 +190,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day5Title.innerText = new Date(weather.daily.data[5].time * 1000).toString().slice(0, 3);
 	let day5weatherDetail = document.createElement('p');
 	day5weatherDetail.classList.add('card-text');
-	day5weatherDetail.innerText = weather.daily.data[5].icon.replace('-', ' ');
+	day5weatherDetail.innerText = weather.daily.data[5].icon.replace(/-/g, ' ').replace('day', '').replace('night', '');
 
 	/* <div class="card">
 			<img class="card-img-top" src="..." alt="Card image cap">
