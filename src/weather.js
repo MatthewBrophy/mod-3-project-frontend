@@ -112,7 +112,7 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	let day1CardBody = document.createElement('div');
 	day1CardBody.classList.add('card-body');
 	let day1Title = document.createElement('h5');
-	day1Title.innerText = 'test';
+	day1Title.innerText = new Date(weather.daily.data[1].time * 1000).toString().slice(0, 3);
 
 	let day2forecast = document.createElement('div');
 	day2forecast.classList.add('card');
