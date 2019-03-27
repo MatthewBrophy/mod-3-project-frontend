@@ -1,3 +1,10 @@
+/* #hidden-content {
+	visibility: hidden;
+} */
+#body {
+	background-color: black;
+}
+
 #header {
 	color: white;
 	text-align: center;
@@ -139,14 +146,6 @@
 }
 
 .text-align-center {
-	text-align: center;
-}
-
-html,
-body {
-	background: #333;
-	height: 100%;
-	overflow: hidden;
 	text-align: center;
 }
 
