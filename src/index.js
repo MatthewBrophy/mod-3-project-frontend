@@ -184,6 +184,9 @@ function showMap() {
 			currentUvIndex.classList.add('red-text');
 		}
 
+		let currentWindSpeed = document.createElement('li');
+		currentWindSpeed.innerText = `Wind Speed ${weather.currently.windSpeed} mph`;
+
 		let forecastSummary = document.createElement('p');
 		forecastSummary.id = 'forecast-summary';
 		forecastSummary.innerText = weather.daily.summary;
