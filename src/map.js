@@ -49,7 +49,9 @@ function showMap() {
 			topElevation.textContent = `Top Elevation: ${resort.top_elevation} ft`;
 		}
 		let snowfall = document.createElement('p');
-		snowfall.textContent = `Average Snowfall: ${Math.floor(resort.annual_snowfall / 2.54)} inches`;
+		if (resort.annual_snowfall) {
+			snowfall.textContent = `Average Snowfall: ${Math.round(resort.annual_snowfall / 2.54)} inches`;
+		}
 		let liftCapacity = document.createElement('p');
 		if (resort.hourly_lift_capacity) {
 			liftCapacity.textContent = `Lift Capacity: ${resort.hourly_lift_capacity} skiers/hr`;
