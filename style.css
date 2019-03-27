@@ -114,7 +114,7 @@
 }
 
 #wide-margins {
-	margin: auto;
+	margin-bottom: 1em;
 	padding-left: 0;
 	padding-right: 0;
 }
