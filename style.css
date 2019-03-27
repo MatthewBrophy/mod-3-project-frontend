@@ -1,11 +1,13 @@
 #header {
 	color: white;
 	text-align: center;
+	font-family: "Gill Sans", sans-serif;
+	letter-spacing: 8px;
 }
 
 #main-map {
 	margin-top: 4em;
-	margin-bottom: 4em;
+	margin-bottom: 10em;
 	background-color: black;
 	height: 700px;
 }
@@ -32,7 +34,7 @@
 	height: 70%;
 	margin-left: -45%; /* negative half of width above */
 	margin-top: -30%; /* negative half of height above */
-	border: 8px solid rgb(0, 229, 255);
+	box-shadow: 0 0 20px rgba(35, 173, 255, 1);
 	border-radius: 25px;
 	background-color: white;
 	z-index: 1002;
@@ -97,24 +99,18 @@
 	background-color: rgb(68, 155, 213);
 }
 
-#main-button {
-	text-align: center;
-	padding: 100px;
-}
-
 .glow {
 	font-size: 80px;
 	color: #fff;
 	text-align: center;
-	-webkit-animation: glow 3s ease-in-out infinite alternate;
-	-moz-animation: glow 3s ease-in-out infinite alternate;
-	animation: glow 3s ease-in-out infinite alternate;
+	-webkit-animation: glow 30s ease-in-out infinite alternate;
+	-moz-animation: glow 30s ease-in-out infinite alternate;
+	animation: glow 30s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes glow {
 	from {
-		text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #1707f3, 0 0 40px #2c57c2, 0 0 50px #2b7cf5,
-			0 0 60px #e60073, 0 0 70px #00cbe6;
+		text-shadow: 0 0 10px #19f6e8;
 	}
 }
 
@@ -148,6 +144,63 @@
 	text-align: center;
 }
 
+html,
+body {
+	background: #333;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+
+#main-button {
+	text-align: center;
+	margin-top: 30em;
+}
+
+.svg-wrapper {
+	height: 60px;
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 320px;
+}
+
+.shape {
+	fill: transparent;
+	stroke-dasharray: 140 540;
+	stroke-dashoffset: -474;
+	stroke-width: 8px;
+	stroke: #19f6e8;
+}
+
+.text {
+	color: #fff;
+	font-family: "Gill Sans", sans-serif;
+	font-size: 22px;
+	letter-spacing: 8px;
+	line-height: 32px;
+	position: relative;
+	top: -48px;
+}
+
+@keyframes draw {
+	0% {
+		stroke-dasharray: 140 540;
+		stroke-dashoffset: -474;
+		stroke-width: 8px;
+	}
+	100% {
+		stroke-dasharray: 760;
+		stroke-dashoffset: 0;
+		stroke-width: 2px;
+	}
+}
+
+.svg-wrapper:hover .shape {
+	-webkit-animation: 0.5s draw linear forwards;
+	animation: 0.5s draw linear forwards;
+}
 #weatherBlurb {
 	font-size: 24px;
 	font-weight: bold;
