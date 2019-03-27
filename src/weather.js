@@ -103,75 +103,6 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	let forecastRow = document.createElement('div');
 	forecastRow.classList.add('card-group');
 
-	let day1forecast = document.createElement('div');
-	day1forecast.classList.add('card');
-	let day1Img = document.createElement('i');
-	day1Img.id = 'sm-weather';
-	day1Img.classList = forecast1IconFunction(weather);
-	day1Img.classList.add('card-img-top');
-	let day1CardBody = document.createElement('div');
-	day1CardBody.classList.add('card-body');
-	day1CardBody.id = 'cardBody';
-	let day1Title = document.createElement('h5');
-	day1Title.innerText = new Date(weather.daily.data[1].time * 1000).toString().slice(0, 3);
-
-	let day2forecast = document.createElement('div');
-	day2forecast.classList.add('card');
-	let day2Img = document.createElement('i');
-	day2Img.id = 'sm-weather';
-	day2Img.classList = forecast2IconFunction(weather);
-	day2Img.classList.add('card-img-top');
-	let day2CardBody = document.createElement('div');
-	day2CardBody.classList.add('card-body');
-	day2CardBody.id = 'cardBody';
-	let day2Title = document.createElement('h5');
-	day2Title.innerText = new Date(weather.daily.data[2].time * 1000).toString().slice(0, 3);
-
-	let day3forecast = document.createElement('div');
-	day3forecast.classList.add('card');
-	let day3Img = document.createElement('i');
-	day3Img.id = 'sm-weather';
-	day3Img.classList = forecast3IconFunction(weather);
-	day3Img.classList.add('card-img-top');
-	let day3CardBody = document.createElement('div');
-	day3CardBody.classList.add('card-body');
-	day3CardBody.id = 'cardBody';
-	let day3Title = document.createElement('h5');
-	day3Title.innerText = new Date(weather.daily.data[3].time * 1000).toString().slice(0, 3);
-
-	let day4forecast = document.createElement('div');
-	day4forecast.classList.add('card');
-	let day4Img = document.createElement('i');
-	day4Img.id = 'sm-weather';
-	day4Img.classList = forecast4IconFunction(weather);
-	day4Img.classList.add('card-img-top');
-	let day4CardBody = document.createElement('div');
-	day4CardBody.classList.add('card-body');
-	day4CardBody.id = 'cardBody';
-	let day4Title = document.createElement('h5');
-	day4Title.innerText = new Date(weather.daily.data[4].time * 1000).toString().slice(0, 3);
-
-	let day5forecast = document.createElement('div');
-	day5forecast.classList.add('card');
-	let day5Img = document.createElement('i');
-	day5Img.id = 'sm-weather';
-	day5Img.classList = forecast5IconFunction(weather);
-	day5Img.classList.add('card-img-top');
-	let day5CardBody = document.createElement('div');
-	day5CardBody.classList.add('card-body');
-	day5CardBody.id = 'cardBody';
-	let day5Title = document.createElement('h5');
-	day5Title.innerText = new Date(weather.daily.data[5].time * 1000).toString().slice(0, 3);
-
-	/* <div class="card">
-			<img class="card-img-top" src="..." alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-			</div>
-  </div> */
-
 	let closeButtonRow = document.createElement('div');
 	closeButtonRow.classList.add('row');
 	closeButtonRow.id = 'center-text';
@@ -184,6 +115,90 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 		weatherPopup.style.display = 'none';
 		fade.style.display = 'none';
 	};
+
+	let day1forecast = document.createElement('div');
+	day1forecast.classList.add('card');
+	let day1Img = document.createElement('i');
+	day1Img.id = 'sm-weather';
+	day1Img.classList = forecast1IconFunction(weather);
+	day1Img.classList.add('card-img-top');
+	let day1CardBody = document.createElement('div');
+	day1CardBody.classList.add('card-body');
+	day1CardBody.id = 'cardBody';
+	let day1Title = document.createElement('h5');
+	day1Title.innerText = new Date(weather.daily.data[1].time * 1000).toString().slice(0, 3);
+	let day1weatherDetail = document.createElement('p');
+	day1weatherDetail.classList.add('card-text');
+	day1weatherDetail.innerText = weather.daily.data[1].icon.replace('-', ' ');
+
+	let day2forecast = document.createElement('div');
+	day2forecast.classList.add('card');
+	let day2Img = document.createElement('i');
+	day2Img.id = 'sm-weather';
+	day2Img.classList = forecast2IconFunction(weather);
+	day2Img.classList.add('card-img-top');
+	let day2CardBody = document.createElement('div');
+	day2CardBody.classList.add('card-body');
+	day2CardBody.id = 'cardBody';
+	let day2Title = document.createElement('h5');
+	day2Title.innerText = new Date(weather.daily.data[2].time * 1000).toString().slice(0, 3);
+	let day2weatherDetail = document.createElement('p');
+	day2weatherDetail.classList.add('card-text');
+	day2weatherDetail.innerText = weather.daily.data[2].icon.replace('-', ' ');
+
+	let day3forecast = document.createElement('div');
+	day3forecast.classList.add('card');
+	let day3Img = document.createElement('i');
+	day3Img.id = 'sm-weather';
+	day3Img.classList = forecast3IconFunction(weather);
+	day3Img.classList.add('card-img-top');
+	let day3CardBody = document.createElement('div');
+	day3CardBody.classList.add('card-body');
+	day3CardBody.id = 'cardBody';
+	let day3Title = document.createElement('h5');
+	day3Title.innerText = new Date(weather.daily.data[3].time * 1000).toString().slice(0, 3);
+	let day3weatherDetail = document.createElement('p');
+	day3weatherDetail.classList.add('card-text');
+	day3weatherDetail.innerText = weather.daily.data[3].icon.replace('-', ' ');
+
+	let day4forecast = document.createElement('div');
+	day4forecast.classList.add('card');
+	let day4Img = document.createElement('i');
+	day4Img.id = 'sm-weather';
+	day4Img.classList = forecast4IconFunction(weather);
+	day4Img.classList.add('card-img-top');
+	let day4CardBody = document.createElement('div');
+	day4CardBody.classList.add('card-body');
+	day4CardBody.id = 'cardBody';
+	let day4Title = document.createElement('h5');
+	day4Title.innerText = new Date(weather.daily.data[4].time * 1000).toString().slice(0, 3);
+	let day4weatherDetail = document.createElement('p');
+	day4weatherDetail.classList.add('card-text');
+	day4weatherDetail.innerText = weather.daily.data[4].icon.replace('-', ' ');
+
+	let day5forecast = document.createElement('div');
+	day5forecast.classList.add('card');
+	let day5Img = document.createElement('i');
+	day5Img.id = 'sm-weather';
+	day5Img.classList = forecast5IconFunction(weather);
+	day5Img.classList.add('card-img-top');
+	let day5CardBody = document.createElement('div');
+	day5CardBody.classList.add('card-body');
+	day5CardBody.id = 'cardBody';
+	let day5Title = document.createElement('h5');
+	day5Title.innerText = new Date(weather.daily.data[5].time * 1000).toString().slice(0, 3);
+	let day5weatherDetail = document.createElement('p');
+	day5weatherDetail.classList.add('card-text');
+	day5weatherDetail.innerText = weather.daily.data[5].icon.replace('-', ' ');
+
+	/* <div class="card">
+			<img class="card-img-top" src="..." alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			</div>
+  </div> */
 
 	weatherPopup.appendChild(mainDisplayPane);
 	mainDisplayPane.appendChild(titleRow);
@@ -216,26 +231,31 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 	day1forecast.appendChild(day1Img);
 	day1forecast.appendChild(day1CardBody);
 	day1CardBody.appendChild(day1Title);
+	day1forecast.appendChild(day1weatherDetail);
 
 	forecastRow.appendChild(day2forecast);
 	day2forecast.appendChild(day2Img);
 	day2forecast.appendChild(day2CardBody);
 	day2CardBody.appendChild(day2Title);
+	day2forecast.appendChild(day2weatherDetail);
 
 	forecastRow.appendChild(day3forecast);
 	day3forecast.appendChild(day3Img);
 	day3forecast.appendChild(day3CardBody);
 	day3CardBody.appendChild(day3Title);
+	day3forecast.appendChild(day3weatherDetail);
 
 	forecastRow.appendChild(day4forecast);
 	day4forecast.appendChild(day4Img);
 	day4forecast.appendChild(day4CardBody);
 	day4CardBody.appendChild(day4Title);
+	day4forecast.appendChild(day4weatherDetail);
 
 	forecastRow.appendChild(day5forecast);
 	day5forecast.appendChild(day5Img);
 	day5forecast.appendChild(day5CardBody);
 	day5CardBody.appendChild(day5Title);
+	day5forecast.appendChild(day5weatherDetail);
 
 	mainDisplayPane.appendChild(closeButtonRow);
 	closeButtonRow.appendChild(closeButton);
