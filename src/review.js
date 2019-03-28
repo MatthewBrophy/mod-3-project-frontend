@@ -35,7 +35,7 @@ function renderReviewForm(reviewPopup, resort) {
 	let reviewForm = document.createElement('form');
 	let reviewDiv = document.createElement('div');
 	let fade = document.getElementById('review-fade');
-	reviewDiv.id = 'review-div';
+	reviewDiv.classList = 'review-div';
 
 	let titleDiv = document.createElement('div');
 	titleDiv.classList = 'form-group';
@@ -104,7 +104,6 @@ function getReviews(resortPopup, resort) {
 			return response.json();
 		})
 		.then(function(comments) {
-			debugger;
 			for (comment of comments) {
 				displayReviews(resortPopup, resort, comment);
 			}
@@ -116,6 +115,7 @@ function displayReviews(resortPopup, resort, comment) {
 	let reviewDiv = document.createElement('div');
 
 	let likeButton = document.createElement('button');
+	likeButton.textContent = 'Like';
 	likeButton.addEventListener('click', function() {
 		addLike(resortPopup, resort, comment);
 	});
@@ -130,27 +130,26 @@ function displayReviews(resortPopup, resort, comment) {
 	reviewDiv.appendChild(reviewLi);
 	reviewDiv.appendChild(likeButton);
 	reviewUl.appendChild(reviewDiv);
+	resortPopup.appendChild(reviewDiv);
 }
 
 function persistComment(reviewPopup, titleEntry, contentEntry, resort) {
-	debugger;
-	let newReview = {
-		resort_id: resort.id,
-		date: null,
-		title: titleEntry,
-		content: contentEntry
-	};
 	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(newReview)
+		body: JSON.stringify({
+			resort_id: resort.id,
+			date: null,
+			title: titleEntry,
+			content: contentEntry
+		})
 	})
 		.then(function(response) {
 			return response.json();
 		})
-		.then(function(reviewReponse) {
+		.then(function(newReview) {
 			displayReviews(newReview, reviewPopup, resort);
 		});
 }
