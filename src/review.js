@@ -49,7 +49,9 @@ function displayReviews(reviews) {
 		if (review.title != null) {
 			let reviewTitleRow = document.createElement('div');
 			reviewTitleRow.classList.add('row');
+			reviewTitleRow.id = 'review-title-row';
 			let reviewTitleContainer = document.createElement('div');
+			reviewTitleContainer.id = 'review-title-container';
 			let reviewTitle = document.createElement('h5');
 			reviewTitle.innerText = review.title;
 
@@ -59,13 +61,24 @@ function displayReviews(reviews) {
 
 			let reviewContentRow = document.createElement('div');
 			reviewContentRow.classList.add('row');
+			reviewContentRow.id = 'review-content-row';
 			let reviewContentContainer = document.createElement('div');
+
 			let reviewContent = document.createElement('p');
 			reviewContent.innerText = review.content;
 
 			reviewContainer.appendChild(reviewContentRow);
 			reviewContentRow.appendChild(reviewContentContainer);
 			reviewContentContainer.appendChild(reviewContent);
+
+			let reviewDateContainer = document.createElement('div');
+			reviewDateContainer.id = 'review-date-container';
+			let reviewDate = document.createElement('p');
+			reviewDate.innerText = review.date;
+			reviewDate.id = 'review-date';
+
+			reviewDateContainer.appendChild(reviewDate);
+			reviewTitleRow.appendChild(reviewDateContainer);
 		}
 	});
 }
@@ -145,7 +158,7 @@ function createNewReview(titleEntry, contentEntry, resort) {
 		},
 		body: JSON.stringify({
 			resort_id: resort.id,
-			date: null,
+			date: new Date(Date.now()).toString().slice(4, 15),
 			title: titleEntry,
 			content: contentEntry
 		})

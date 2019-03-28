@@ -50,9 +50,9 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 90%;
-	height: 90%;
-	margin-left: -45%; /* negative half of width above */
+	width: 70%;
+	height: 70%;
+	margin-left: -35%; /* negative half of width above */
 	margin-top: -20%; /* negative half of height above */
 	box-shadow: 0 0 20px rgba(35, 173, 255, 1);
 	background-color: white;
@@ -60,6 +60,7 @@
 	padding: 10px 10px 15px;
 	border-radius: 3px;
 	text-align: center;
+	overflow-y: scroll;
 }
 
 #marker {
@@ -67,8 +68,8 @@
 	background-color: none;
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 40px;
-	height: 40px;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 }
 
@@ -81,7 +82,7 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 12px;
-	margin: 2px;
+	margin: 10px;
 }
 
 .popup-button:hover {
@@ -267,9 +268,16 @@ canvas {
 	padding: 3em;
 	box-shadow: 0 0 10px rgba(35, 173, 255, 1);
 	text-align: left;
-	overflow: auto;
+}
+#review-title-row {
+	border-top: 2px solid rgb(0, 166, 255);
 }
 
-#review-container {
-	overflow: auto;
+#review-content-row {
+	text-align: left;
+}
+
+#review-date-container {
+	margin-left: auto;
+	margin-right: 0;
 }

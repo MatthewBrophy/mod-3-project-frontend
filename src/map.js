@@ -32,6 +32,7 @@ function showMap() {
 		});
 
 	function buildPopUp(resort) {
+		console.log(resort);
 		let myLatlng = new mapboxgl.LngLat(resort.longitude, resort.latitude);
 		let marker = document.createElement('div');
 		marker.id = 'marker';
@@ -56,12 +57,17 @@ function showMap() {
 		if (resort.hourly_lift_capacity) {
 			liftCapacity.textContent = `Lift Capacity: ${resort.hourly_lift_capacity} skiers/hr`;
 		}
+		let terrainPark = document.createElement('p');
+		if (resort.terrain_park === 'Yes') {
+			terrainPark.texContent = 'Gnarly Terrain Park my Breh.';
+		}
 
 		div.appendChild(title);
 		div.appendChild(snowfall);
 		div.appendChild(baseElevation);
 		div.appendChild(topElevation);
 		div.appendChild(liftCapacity);
+		div.appendChild(terrainPark);
 
 		createPopupButton(resort, marker, myLatlng, div, map);
 	}
