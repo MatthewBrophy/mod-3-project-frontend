@@ -18,7 +18,8 @@ function buildReviewBox(resort) {
 
 	buttonWrapper.appendChild(closeButton);
 	reviewPopup.appendChild(buttonWrapper);
-	getReviews(resort);
+	getReviews(reviewPopup, resort);
+	console.log('reached review function');
 
 	let newCommentButton = document.createElement('button');
 	newCommentButton.classList = 'popup-button';
@@ -31,7 +32,7 @@ function buildReviewBox(resort) {
 	buttonWrapper.appendChild(newCommentButton);
 }
 
-function getReviews(resort) {
+function getReviews(reviewPopup, resort) {
 	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`)
 		.then((res) => res.json())
 		.then((reviews) => displayReviews(reviews));
@@ -137,7 +138,6 @@ function renderReviewForm(reviewPopup, resort) {
 }
 
 function createNewReview(titleEntry, contentEntry, resort) {
-	let resortToPass = resort;
 	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`, {
 		method: 'POST',
 		headers: {
@@ -151,8 +151,7 @@ function createNewReview(titleEntry, contentEntry, resort) {
 		})
 	})
 		.then((res) => res.json())
-		.then((json) => {
-			console.log(json);
-			buildReviewBox(resortToPass);
+		.then((boogers) => {
+			console.log(boogers);
 		});
 }

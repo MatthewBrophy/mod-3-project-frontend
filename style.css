@@ -269,3 +269,7 @@ canvas {
 	text-align: left;
 	overflow: auto;
 }
+
+#review-container {
+	overflow: auto;
+}
