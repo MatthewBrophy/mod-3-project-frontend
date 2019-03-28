@@ -1,14 +1,14 @@
 function showMap() {
 	console.log('getting to show map');
 	const RESORTS = 'http://localhost:3000/api/v1/resorts';
-	let center = [ -118.291388, 45.97 ];
+	let center = [ -117.004372, 41.087132 ];
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
 
 	let map = new mapboxgl.Map({
 		container: 'main-map',
 		center: center,
-		zoom: 4.5,
+		zoom: 4.0,
 		//maxZoom: 10,
 		style: 'mapbox://styles/mapbox/dark-v10'
 	});
