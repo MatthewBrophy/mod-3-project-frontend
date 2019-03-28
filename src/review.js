@@ -31,35 +31,11 @@ function buildReviewBox(resort) {
 	reviewPopup.appendChild(newCommentButton);
 }
 
-function getReviews(resortPopup, resort) {
-	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`)
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(comments) {
-			for (comment of comments) {
-				displayReviews(resortPopup, resort, comment);
-			}
-		});
-}
-
-function displayReviews(resortPopup, resort, comment) {
-	let reviewUl = document.createElement('ul');
-	let reviewDiv = document.createElement('div');
-	reviewDiv.style.overflow = 'auto';
-	let reviewTitle = document.createElement('h4');
-	reviewTitle.textContent = comment.title;
-	let reviewLi = document.createElement('li');
-	reviewLi.textContent = comment.content;
-
-	reviewDiv.appendChild(reviewTitle);
-	reviewDiv.appendChild(reviewLi);
-	reviewUl.appendChild(reviewDiv);
-	resortPopup.appendChild(reviewUl);
-}
-
 function renderReviewForm(reviewPopup, resort) {
 	let reviewForm = document.createElement('form');
+	let reviewDiv = document.createElement('div');
+	let fade = document.getElementById('review-fade');
+	reviewDiv.id = 'review-div';
 
 	let titleDiv = document.createElement('div');
 	titleDiv.classList = 'form-group';
@@ -69,7 +45,7 @@ function renderReviewForm(reviewPopup, resort) {
 	titleLabel.textContent = 'Title';
 
 	let titleInput = document.createElement('input');
-	titleInput.classList = 'title-control';
+	titleInput.classList = 'form-control';
 	titleInput.id = 'review-title';
 
 	let contentDiv = document.createElement('div');
@@ -92,9 +68,19 @@ function renderReviewForm(reviewPopup, resort) {
 		event.preventDefault();
 		let titleEntry = document.getElementById('review-title').value;
 		let contentEntry = document.getElementById('review-content').value;
-		persistComment(titleEntry, contentEntry, resort);
-		reviewPopup.innerHTML = '';
+		persistComment(reviewPopup, titleEntry, contentEntry, resort);
+		reviewDiv.remove();
 		buildReviewBox(resort);
+	});
+
+	let closeButton = document.createElement('button');
+	closeButton.id = 'x';
+	closeButton.textContent = 'x';
+	closeButton.addEventListener('click', function() {
+		reviewPopup.innerHTML = '';
+		closeButton.remove();
+		reviewPopup.style.display = 'none';
+		fade.style.display = 'none';
 	});
 
 	titleDiv.appendChild(titleLabel);
@@ -107,10 +93,47 @@ function renderReviewForm(reviewPopup, resort) {
 	reviewForm.appendChild(contentDiv);
 
 	reviewForm.appendChild(submitButton);
-	reviewPopup.appendChild(reviewForm);
+	reviewDiv.appendChild(reviewForm);
+	reviewPopup.appendChild(closeButton);
+	reviewPopup.appendChild(reviewDiv);
 }
 
-function persistComment(titleEntry, contentEntry, resort) {
+function getReviews(resortPopup, resort) {
+	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`)
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(comments) {
+			debugger;
+			for (comment of comments) {
+				displayReviews(resortPopup, resort, comment);
+			}
+		});
+}
+
+function displayReviews(resortPopup, resort, comment) {
+	let reviewUl = document.createElement('ul');
+	let reviewDiv = document.createElement('div');
+
+	let likeButton = document.createElement('button');
+	likeButton.addEventListener('click', function() {
+		addLike(resortPopup, resort, comment);
+	});
+
+	let reviewTitle = document.createElement('h4');
+	reviewTitle.textContent = comment.title;
+
+	let reviewLi = document.createElement('li');
+	reviewLi.textContent = comment.content;
+
+	reviewDiv.appendChild(reviewTitle);
+	reviewDiv.appendChild(reviewLi);
+	reviewDiv.appendChild(likeButton);
+	reviewUl.appendChild(reviewDiv);
+}
+
+function persistComment(reviewPopup, titleEntry, contentEntry, resort) {
+	debugger;
 	let newReview = {
 		resort_id: resort.id,
 		date: null,
@@ -123,5 +146,11 @@ function persistComment(titleEntry, contentEntry, resort) {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(newReview)
-	});
+	})
+		.then(function(response) {
+			return response.json();
+		})
+		.then(function(reviewReponse) {
+			displayReviews(newReview, reviewPopup, resort);
+		});
 }

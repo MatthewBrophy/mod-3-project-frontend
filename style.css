@@ -51,15 +51,16 @@
 	top: 50%;
 	left: 50%;
 	width: 90%;
-	height: 70%;
+	height: 90%;
 	margin-left: -45%; /* negative half of width above */
 	margin-top: -20%; /* negative half of height above */
 	box-shadow: 0 0 20px rgba(35, 173, 255, 1);
 	background-color: white;
 	z-index: 1002;
-	overflow: auto;
+	overflow: hidden;
 	padding: 10px 10px 15px;
 	border-radius: 3px;
+	text-align: center;
 }
 
 #marker {
@@ -85,7 +86,7 @@
 }
 
 .popup-button:hover {
-	background-color: rgb(57, 69, 235);
+	background-color: rgba(35, 173, 255, 1);
 }
 
 .glow {
@@ -257,4 +258,15 @@ canvas {
 
 #main-image {
 	color: white;
+}
+
+#review-div {
+	margin-left: 10em;
+	margin-right: 10em;
+	margin-top: 4em;
+	margin-bottom: 2em;
+	padding: 3em;
+	box-shadow: 0 0 10px rgba(35, 173, 255, 1);
+	text-align: left;
+	overflow: auto;
 }
