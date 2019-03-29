@@ -304,4 +304,10 @@ canvas {
 		height: 350px;
 		border-radius: 3px;
 	}
+
+	#logo {
+		margin-top: 30px;
+
+		width: 100px;
+	}
 }
