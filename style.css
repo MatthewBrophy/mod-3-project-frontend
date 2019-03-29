@@ -271,6 +271,7 @@ canvas {
 }
 #review-title-row {
 	border-top: 2px solid rgb(0, 166, 255);
+	padding-top: 5px;
 }
 
 #review-content-row {

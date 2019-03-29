@@ -6,6 +6,8 @@ function buildReviewBox(resort) {
 
 	let buttonWrapper = document.createElement('div');
 	buttonWrapper.id = 'button-wrapper';
+	let reviewResortTitle = document.createElement('h3');
+	reviewResortTitle.textContent = `${resort.name} Reviews`;
 	let closeButton = document.createElement('button');
 	closeButton.id = 'x';
 	closeButton.textContent = 'x';
@@ -16,6 +18,7 @@ function buildReviewBox(resort) {
 		fade.style.display = 'none';
 	};
 
+	buttonWrapper.appendChild(reviewResortTitle);
 	buttonWrapper.appendChild(closeButton);
 	reviewPopup.appendChild(buttonWrapper);
 	getReviews(resort);
@@ -32,7 +35,7 @@ function buildReviewBox(resort) {
 }
 
 function getReviews(resort) {
-	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`)
+	fetch(`https://mighty-cliffs-43940.herokuapp.com/api/v1/resorts/${resort.id}/comments`)
 		.then((res) => res.json())
 		.then((reviews) => displayReviews(reviews));
 }
@@ -151,7 +154,7 @@ function renderReviewForm(reviewPopup, resort) {
 
 function createNewReview(titleEntry, contentEntry, resort) {
 	let resortToPass = resort;
-	fetch(`http://localhost:3000/api/v1/resorts/${resort.id}/comments`, {
+	fetch(`https://mighty-cliffs-43940.herokuapp.com/api/v1/resorts/${resort.id}/comments`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'

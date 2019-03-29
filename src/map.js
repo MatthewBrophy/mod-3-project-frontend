@@ -1,6 +1,6 @@
 function showMap() {
 	console.log('getting to show map');
-	const RESORTS = 'http://localhost:3000/api/v1/resorts';
+	const RESORTS = 'https://mighty-cliffs-43940.herokuapp.com/api/v1/resorts';
 	let center = [ -117.004372, 41.087132 ];
 	mapboxgl.accessToken =
 		'pk.eyJ1IjoibXRiYWtlcnNwbGl0dGVyIiwiYSI6ImNqc3dxemJtaDBoYXY0M3BqN3VkMDA3dWgifQ.96NXAB8dmRLa8O2ac_KUqA';
@@ -38,8 +38,9 @@ function showMap() {
 		marker.id = 'marker';
 
 		let div = window.document.createElement('div');
+
 		let title = document.createElement('h3');
-		title.textContent = resort.name;
+		title.textContent = `${resort.name} ʕ•ᴥ•ʔ`;
 		let baseElevation = document.createElement('p');
 		if (resort.bottom_elevation) {
 			baseElevation.textContent = `Base Elevation: ${resort.bottom_elevation} ft`;
@@ -59,7 +60,9 @@ function showMap() {
 		}
 		let terrainPark = document.createElement('p');
 		if (resort.terrain_park === 'Yes') {
-			terrainPark.texContent = 'Gnarly Terrain Park my Breh.';
+			terrainPark.textContent = 'Gnarly Terrain Park my Breh.';
+		} else {
+			terrainPark.textContent = 'No Terrain Park here my broham. (╯°□°）╯︵ ┻━┻ ';
 		}
 
 		div.appendChild(title);

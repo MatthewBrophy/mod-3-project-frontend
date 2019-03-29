@@ -1,4 +1,4 @@
-const WEATHER = 'http://localhost:3000/api/v1/weather';
+const WEATHER = 'https://mighty-cliffs-43940.herokuapp.com/api/v1/weather';
 
 function getWeather(resort) {
 	fetch(WEATHER, {
