@@ -64,12 +64,12 @@
 }
 
 #marker {
-	background-image: url('https://cdn1.iconfinder.com/data/icons/unigrid-bluetone-human-vol-2/60/011_053_athlete_sportsman_skier_olympian_human_avatar-512.png');
+	background-image: url('location.png');
 	background-color: none;
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 35px;
-	height: 35px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 }
 
