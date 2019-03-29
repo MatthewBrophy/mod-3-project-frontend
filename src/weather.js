@@ -257,6 +257,4 @@ function displayWeather(resort, weatherPopup, weather, buttonWrapper) {
 
 	mainDisplayPane.appendChild(closeButtonRow);
 	closeButtonRow.appendChild(closeButton);
-
-	console.log(weather);
 }

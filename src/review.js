@@ -90,7 +90,7 @@ function renderReviewForm(reviewPopup, resort) {
 	let reviewForm = document.createElement('form');
 	let reviewDiv = document.createElement('div');
 	let fade = document.getElementById('review-fade');
-	reviewDiv.classList = 'review-div';
+	reviewDiv.classList.add('review-div', 'container');
 
 	let titleDiv = document.createElement('div');
 	titleDiv.classList = 'form-group';
@@ -168,7 +168,6 @@ function createNewReview(titleEntry, contentEntry, resort) {
 	})
 		.then((res) => res.json())
 		.then((json) => {
-			console.log(json);
 			buildReviewBox(resortToPass);
 		});
 }

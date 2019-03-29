@@ -1,5 +1,4 @@
 function showMap() {
-	console.log('getting to show map');
 	const RESORTS = 'https://mighty-cliffs-43940.herokuapp.com/api/v1/resorts';
 	let center = [ -117.004372, 41.087132 ];
 	mapboxgl.accessToken =
@@ -19,8 +18,6 @@ function showMap() {
 	});
 	map.addControl(geoLocate);
 
-	map.addControl(new mapboxgl.NavigationControl());
-
 	fetch(RESORTS)
 		.then(function(response) {
 			return response.json();
@@ -32,7 +29,6 @@ function showMap() {
 		});
 
 	function buildPopUp(resort) {
-		console.log(resort);
 		let myLatlng = new mapboxgl.LngLat(resort.longitude, resort.latitude);
 		let marker = document.createElement('div');
 		marker.id = 'marker';
@@ -54,10 +50,7 @@ function showMap() {
 		if (resort.annual_snowfall) {
 			snowfall.textContent = `Average Snowfall: ${Math.round(resort.annual_snowfall / 2.54)} inches`;
 		}
-		let liftCapacity = document.createElement('p');
-		if (resort.hourly_lift_capacity) {
-			liftCapacity.textContent = `Lift Capacity: ${resort.hourly_lift_capacity} skiers/hr`;
-		}
+
 		let terrainPark = document.createElement('p');
 		if (resort.terrain_park === 'Yes') {
 			terrainPark.textContent = 'Gnarly Terrain Park my Breh.';
@@ -69,14 +62,19 @@ function showMap() {
 		div.appendChild(snowfall);
 		div.appendChild(baseElevation);
 		div.appendChild(topElevation);
-		div.appendChild(liftCapacity);
 		div.appendChild(terrainPark);
 
 		createPopupButton(resort, marker, myLatlng, div, map);
 	}
 
 	function createPopupButton(resort, marker, myLatlng, div, map) {
-		let popup = new mapboxgl.Popup().setLngLat(myLatlng).setDOMContent(div).addTo(map);
+		let popup = new mapboxgl.Popup({
+			anchor: 'center',
+			closeOnClick: true
+		})
+			.setLngLat(myLatlng)
+			.setDOMContent(div)
+			.addTo(map);
 		new mapboxgl.Marker(marker).setLngLat(myLatlng).setPopup(popup).addTo(map);
 		marker.addEventListener('click', function() {
 			map.flyTo({
@@ -92,20 +90,20 @@ function showMap() {
 			popup.remove();
 			map.flyTo({
 				center: center,
-				zoom: 5.5
+				zoom: 3.5
 			});
 		});
 
 		let weatherButton = document.createElement('button');
 		weatherButton.classList = 'popup-button';
-		weatherButton.textContent = 'Weather Report';
+		weatherButton.textContent = 'Weather';
 		weatherButton.addEventListener('click', function() {
 			getWeather(resort);
 		});
 
 		let resortButton = document.createElement('button');
 		resortButton.classList = 'popup-button';
-		resortButton.textContent = 'Resort Reviews';
+		resortButton.textContent = 'Reviews';
 		resortButton.addEventListener('click', function() {
 			buildReviewBox(resort);
 		});

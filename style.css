@@ -78,11 +78,11 @@
 	border: none;
 	color: white;
 	padding: 10px 20px;
-	text-align: right;
+	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 12px;
-	margin: 10px;
+	margin: 2px;
 }
 
 .popup-button:hover {
@@ -193,14 +193,6 @@
 	font-weight: bold;
 }
 
-.left-pane-border {
-	border-right: 2px solid black;
-}
-
-.right-pane-border {
-	border-left: 2px solid black;
-}
-
 li {
 	list-style-type: none;
 	text-align: left;
@@ -281,4 +273,16 @@ canvas {
 #review-date-container {
 	margin-left: auto;
 	margin-right: 0;
+}
+
+@media only screen and (max-width: 320px) {
+	.mapboxgl-popup-content {
+		max-width: 250px;
+	}
+	.mapboxgl-popup-content div {
+		padding: 0em;
+	}
+	.mapboxgl-popup-content p {
+		margin: 0.25em 0.25em;
+	}
 }
