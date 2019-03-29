@@ -285,4 +285,22 @@ canvas {
 	.mapboxgl-popup-content p {
 		margin: 0.25em 0.25em;
 	}
+	#light {
+		top: 10%;
+		left: 50%;
+		width: 75%;
+		height: 100%;
+	}
+	#review-light {
+		top: 10%;
+		left: 50%;
+		width: 75%;
+		height: 100%;
+	}
+	#main-map {
+		margin-top: 1em;
+		background-color: black;
+		height: 350px;
+		border-radius: 3px;
+	}
 }
